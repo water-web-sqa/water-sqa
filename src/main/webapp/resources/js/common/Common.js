@@ -49,20 +49,9 @@ class showMessage {
 }
 
 class msgMune {
-    static titlej001 = "実績一覧";
-    static titlej002 = "ﾄﾗｯｸﾏｽﾀｰ";
-    static mjw001 = "時間From≦ 時間Toとなるように入力してください。";
-    static mjw03_01 = "ﾄﾗｯｸ番号が既に存在しました。";
-    static mjw03_02 = "このﾄﾗｯｸ番号を削除しますが、よろしいですか？";
-    static mjw03_03 = "このﾄﾗｯｸが移動検証中なので、削除できません。";
-    static mjw03_04 = "このﾄﾗｯｸが移動検証中なので、編集できません。";
-    static mjw02_01 = "IDが既に存在しました。";
-    static mjw02_02 = "氏名が既に存在しました。";
-    static mjw02_03 = "メールアドレスが既に存在しました。";
-    static mjw02_04 = "この担当者を削除しますが、よろしいですか？";
-    static mjw02_05 = "この担当者が検証中のﾄﾗｯｸを担当していますので、削除できません。";
-    static mjw02_06 = "この担当者が検証中のﾄﾗｯｸを担当していますので、編集できません。";
-    static buttonOk = "はい";
-    static buttonCancel = "いいえ";
+    static titlej001 = "Thông báo";
+    static mjw001 = "";
+    static buttonOk = "Đồng ý";
+    static buttonCancel = "Cancel";
 }
 

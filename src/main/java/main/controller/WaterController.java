@@ -3,7 +3,9 @@ package main.controller;
 import main.beans.AddressBeans;
 import main.beans.WrapperResponse;
 import main.entity.HouseHold;
+import main.entity.WaterSupplier;
 import main.service.HouseHoldService;
+import main.service.WatterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.xml.ws.Response;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -30,6 +33,8 @@ public class WaterController extends BaseController{
 	UserService userService;
 	@Autowired
 	HouseHoldService houseHoldService;
+	@Autowired
+	WatterService watterService;
 
 	@RequestMapping(value = URLConst.Water.WATER_HOME , method = RequestMethod.GET)
 	public ModelAndView view(HttpServletRequest request, Model model) {
@@ -50,18 +55,45 @@ public class WaterController extends BaseController{
 
 	@PostMapping(value = URLConst.Water.WATER_SEARCH_HOUSEHOLD, consumes = "application/json", produces = "application/json")
 	@ResponseBody
-	public WrapperResponse<List<HouseHold>> updatePerson(@RequestBody AddressBeans addressBeans) {
-		WrapperResponse<List<HouseHold>> response = new WrapperResponse<>();
+	public HashMap<String, Object> updatePerson(@RequestBody AddressBeans addressBeans) {
+		HashMap<String, Object> result = new HashMap<>();
 		try {
 			String address = addressBeans.getWard() + ", " + addressBeans.getDistrinct() + ", " + addressBeans.getCity();
 			List<HouseHold> list = houseHoldService.findAllHousehouseByAddress(address);
-			response.setBody(list);
-			response.setMsg("Success");
-			response.setStatus(200);
+			result.put("draw", 1);
+			result.put("recordsTotal", list.size());
+			result.put("recordsFiltered", list.size());
+			result.put("data", list);
 		} catch (Exception e) {
-			response.setMsg("Error");
-			response.setStatus(400);
+			logger.error(e.getMessage(), e);
 		}
-		return response;
+		return result;
+	}
+	@GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
+	@ResponseBody
+	public List<WaterSupplier> getListWater() {
+		try {
+			return watterService.getListSupplier();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	@PostMapping(value = URLConst.Water.UPDATE_HOUSE_HOLD, consumes = "application/json", produces = "application/json")
+	@ResponseBody
+	public WrapperResponse<Boolean> updateHouseHold(@RequestBody HouseHold houseHold) {
+		WrapperResponse<Boolean> response = new WrapperResponse<Boolean>();
+		try {
+			response.setStatus(200);
+			response.setBody(true);
+			houseHoldService.saveHouseHold(houseHold);
+			return response;
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		response.setStatus(200);
+		response.setBody(true);
+		return null;
 	}
 }

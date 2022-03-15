@@ -18,6 +18,10 @@ public class URLConst {
         public static final String WATER_HOME_2 = "/water2";
 
         public static final String WATER_SEARCH_HOUSEHOLD = WATER_HOME + "/search";
+
+        public static final String GET_WATER_SUPPLIER = WATER_HOME + "/getWaterSupplier";
+
+        public static final String UPDATE_HOUSE_HOLD = WATER_HOME + "/updateHouseHold";
     }
 
 }

@@ -21,6 +21,11 @@ public class HouseHoldServiceImpl implements HouseHoldService {
 
     @Override
     public List<HouseHold> findAllHousehouseByAddress(String address) {
-        return houseHoldRepository.findAllByAddressContaining(address);
+        return houseHoldRepository.findAllByAddressLike(address);
+    }
+
+    @Override
+    public void saveHouseHold(HouseHold houseHold) {
+        houseHoldRepository.save(houseHold);
     }
 }

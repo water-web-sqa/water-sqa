@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface HouseHoldRepository extends JpaRepository<HouseHold, String> {
-    List<HouseHold> findAllByAddressContaining(String address);
+    List<HouseHold> findAllByAddressLike(String address);
 }

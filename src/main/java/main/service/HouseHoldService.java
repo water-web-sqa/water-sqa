@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface HouseHoldService {
     List<HouseHold> findAllHousehouseByAddress(String address);
+    void saveHouseHold(HouseHold houseHold);
 }
