@@ -1,0 +1,40 @@
+
+
+variables:
+  MAVEN_CLI_OPTS: ""
+  MAVEN_OPTS: ""
+  DOCKERFILES_DIR_BACKEND: "./"
+
+cache:
+  paths:
+    - $DOCKERFILES_DIR_BACKEND/target/
+
+stages:
+  - build:jvm
+  - build:docker
+  - deploy:backend
+
+java:
+  stage: build:jvm
+  script:
+    - mvn $MAVEN_CLI_OPTS clean
+  only:
+    - master
+
+docker:
+  stage: build:docker
+  needs: ["java"]
+  script:
+    - mvn $MAVEN_CLI_OPTS install
+    - docker build -t nsmv/jiseki-web:latest .
+  only:
+    - master
+
+deploy:
+  stage: deploy:backend
+  needs: ["docker"]
+  script:
+    - docker-compose up -d
+  only:
+    - release
+
