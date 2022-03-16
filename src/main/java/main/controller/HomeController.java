@@ -37,7 +37,7 @@ public class HomeController extends BaseController{
         return new ModelAndView("login");
     }
 
-    @RequestMapping(value = "/payoo/check", method = RequestMethod.GET)
+    @RequestMapping(value = "/payoo/customer", method = RequestMethod.GET)
     public ModelAndView userCheck(Model model, HttpServletRequest request, Principal principal) {
         HttpSession session = request.getSession();
         session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER);
