@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: DuongHoangChi
-  Date: 3/3/2022
-  Time: 11:35 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="main.common.URLConst" %>
 <%@ page import="main.common.CommonConst" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
