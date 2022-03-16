@@ -1,10 +1,13 @@
 package main.controller;
 
-import main.beans.AddressBeans;
+import main.beans.HouseHoldBeans;
+import main.beans.HouseHoldWaterBeans;
+import main.beans.WaterMoneyUpdateBeans;
 import main.beans.WrapperResponse;
 import main.entity.HouseHold;
 import main.entity.WaterSupplier;
 import main.service.HouseHoldService;
+import main.service.WaterMoneyService;
 import main.service.WatterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +23,7 @@ import main.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import javax.xml.ws.Response;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +38,8 @@ public class WaterController extends BaseController{
 	HouseHoldService houseHoldService;
 	@Autowired
 	WatterService watterService;
+	@Autowired
+	WaterMoneyService waterMoneyService;
 
 	@RequestMapping(value = URLConst.Water.WATER_HOME , method = RequestMethod.GET)
 	public ModelAndView view(HttpServletRequest request, Model model) {
@@ -55,11 +60,23 @@ public class WaterController extends BaseController{
 
 	@PostMapping(value = URLConst.Water.WATER_SEARCH_HOUSEHOLD, consumes = "application/json", produces = "application/json")
 	@ResponseBody
-	public HashMap<String, Object> updatePerson(@RequestBody AddressBeans addressBeans) {
+	public HashMap<String, Object> findHouseHoldWater(@RequestBody HouseHoldBeans houseHoldBeans) {
 		HashMap<String, Object> result = new HashMap<>();
 		try {
-			String address = addressBeans.getWard() + ", " + addressBeans.getDistrinct() + ", " + addressBeans.getCity();
-			List<HouseHold> list = houseHoldService.findAllHousehouseByAddress(address);
+			List<HouseHold> houseHolds = new ArrayList<>();
+			if(houseHoldBeans.getCodehouse().equals("")) {
+				houseHolds = houseHoldService.findAllHousehouseByAddress(houseHoldBeans);
+			} else {
+				HouseHold item = houseHoldService.findByCodeHouse(houseHoldBeans.getCodehouse());
+				if(item != null) {
+					houseHolds.add(item);
+				}
+			}
+			List<HouseHoldWaterBeans> list = new ArrayList<>();
+			houseHolds.forEach(houseHold -> {
+				list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse())));
+			});
+
 			result.put("draw", 1);
 			result.put("recordsTotal", list.size());
 			result.put("recordsFiltered", list.size());
@@ -69,6 +86,7 @@ public class WaterController extends BaseController{
 		}
 		return result;
 	}
+
 	@GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
 	@ResponseBody
 	public List<WaterSupplier> getListWater() {
@@ -95,5 +113,21 @@ public class WaterController extends BaseController{
 		response.setStatus(200);
 		response.setBody(true);
 		return null;
+	}
+
+	@PostMapping(value = URLConst.Water.UPDATE_WATER_MONEY, consumes = "application/json", produces = "application/json")
+	@ResponseBody
+	public WrapperResponse<Boolean> updateWaterMoney(@RequestBody WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
+		WrapperResponse<Boolean> response = new WrapperResponse<>();
+		try {
+			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans.getNumberWater(), waterMoneyUpdateBeans.getCodeHouse());
+			response.setStatus(200);
+			response.setBody(true);
+			response.setMsg("Success");
+		} catch (Exception e) {
+			response.setStatus(400);
+			logger.error(e.getMessage(), e);
+		}
+		return response;
 	}
 }

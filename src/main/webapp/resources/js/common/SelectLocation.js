@@ -5,7 +5,7 @@ let dataSupplier = null;
 $( document ).ready(function() {
     console.log( "ready!" );
     initData();
-    searchaddress(true);
+    searchhousehold(true);
     getWaterSupplier();
 });
 
@@ -101,22 +101,26 @@ function onchangeDistrict(element) {
     }
 }
 
-function searchaddress(all) {
+function searchhousehold(all) {
 
     let tableHouseHold = null;
-    let addressBeans;
+    let houseHoldBeans;
     if(all){
-        addressBeans = {
+        houseHoldBeans = {
             city: "",
             distrinct: "",
-            ward: ""
+            ward: "",
+            namehouse: "",
+            codehouse: "12345@Df"
         };
     }
     else{
-        addressBeans = {
-            city: $("#city option:selected")[0].innerText,
-            distrinct: $("#district option:selected")[0].innerText,
-            ward: $("#ward option:selected")[0].innerText
+        houseHoldBeans = {
+            city: ($("#city option:selected")[0].innerText == $("#cityDefault")[0].innerText) ? "" : $("#city option:selected")[0].innerText,
+            distrinct: ($("#district option:selected")[0].innerText == $("#districtDefault")[0].innerText) ? "" : $("#district option:selected")[0].innerText,
+            ward: ($("#ward option:selected")[0].innerText == $("#wardDefault")[0].innerText) ? "" : $("#ward option:selected")[0].innerText,
+            namehouse: $("#searchname").val(),
+            codehouse: $("#searchcode").val()
         };
     }
 
@@ -147,39 +151,49 @@ function searchaddress(all) {
                 }, 5000)
             },
             data: function (d) {
-                return JSON.stringify(addressBeans);
+                return JSON.stringify(houseHoldBeans);
             },
         },
         ordering: false,
         columns: [
             {
-                title: 'Mã danh bộ', data: 'codeHouse', render: (val) => {
-                    return val
+                title: 'Mã danh bộ', data: 'houseHold', render: (val) => {
+                    return val.codeHouse
                 }
             },
             {
-                title: 'Tên chủ hộ', data: 'nameHouse', render: (val) => {
-                    return val
+                title: 'Tên chủ hộ', data: 'houseHold', render: (val) => {
+                    return val.nameHouse
                 }
             },
             {
-                title: 'Địa chỉ', data: 'address', render: (val) => {
-                    return val
+                title: 'Địa chỉ', data: 'houseHold', render: (val) => {
+                    return val.address
                 }
             },
             {
-                title: 'Ngày sinh', data: 'dataBirth', render: (val) => {
-                    return val
+                title: 'Ngày sinh', data: 'houseHold', render: (val) => {
+                    // return new Date(val.dataBirth).toDateString();
+                    return formatDate(new Date(val.dataBirth));
                 }
             },
             {
-                title: '', data: 'idSupplier', render: (val,row,col) => {
+                title: 'Số nước tháng này', data: 'nowWater', render: (val, row, col) => {
+                    let numberwater = (val) ? val.numberWater : '';
+                    return '<input id="dataWater_'+col.houseHold.codeHouse+'" value="'+numberwater+'" disabled />' +
+                        '<i class="fa-solid fa-eye" codeHouse="'+col.houseHold.codeHouse+'" onclick="transferDisplay(this)"></i>'
+                    // return '<input id="'+id+'" value="'+numberwater+'" disabled />' +
+                    //     '<i class="fa-solid fa-eye" codeHouse="'+val.codeHouse+'" onclick="transferDisplay(this)"></i>'
+                }
+            },
+            {
+                title: '', data: 'houseHold', render: (val,row,col) => {
                     return '<div id="editHouseHold">' +
-                        '<i class="fa fa-pen" codeHouse="'+col.codeHouse+'"  idSupplier="'+col.idSupplier+'" nameHouse="'+col.nameHouse+'"  address="'+col.address+'" dataBirth="'+col.dataBirth+'"   style="color: #34CEFF;font-size: 15px" onclick="editHouseHold(this)"></i>'
+                        '<i class="fa fa-pen" codeHouse="'+col.houseHold.codeHouse+'" onclick="saveNumberWater(this)"></i>' +
+                        '<i class="fa fa-pen" codeHouse="'+col.houseHold.codeHouse+'"  idSupplier="'+col.houseHold.idSupplier+'" nameHouse="'+col.houseHold.nameHouse+'"  address="'+col.houseHold.address+'" dataBirth="'+col.houseHold.dataBirth+'" style="color: #34CEFF;font-size: 15px" onclick="editHouseHold(this)"></i>'
                     '</div>'
                 }
             },
-
         ]
     });
 }
@@ -201,7 +215,7 @@ function saveHoldHouse(){
         contentType: "application/json",
         success: function (data) {
             if (data.status == 200) {
-                getWaterSupplier();
+                searchhousehold();
                 $("#modalEdit").modal("hide");
                 showMessage.show(msgMune.titlej001, "Sửa thành công", null, "OK");
             } else {
@@ -213,6 +227,37 @@ function saveHoldHouse(){
     });
 }
 
+function saveNumberWater(atrr) {
+    // let dataWater = $("#dataWater_" + $(atrr).attr('codeHouse'))[0].value;
+    // console.log(dataWater);
+    let waterMoneyUpdateBeans = {
+        codeHouse: $(atrr).attr('codeHouse'),
+        numberWater: $('#dataWater_' + $(atrr).attr('codeHouse'))[0].value
+    };
+
+    if(!isNaN(waterMoneyUpdateBeans.numberWater) && waterMoneyUpdateBeans.numberWater > 0) {
+        $.ajax({
+            type: "POST",
+            url: urlUpdateWaterNumber,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data.status == 200) {
+                    searchhousehold();
+                    $("#modalEdit").modal("hide");
+                    showMessage.show(msgMune.titlej001, "Cập nhật thành công", null, "OK");
+                } else {
+                    $("#modalEdit").modal("hide");
+                    alert("Cannot add to list !");
+                }
+            },
+            data: JSON.stringify(waterMoneyUpdateBeans)
+        });
+    } else {
+        showMessage.show(msgMune.titlej001, "Nhập số nước sai định dạng", null, "OK");
+    }
+}
+
 function editHouseHold(atrr){
     $("#houseCodeEdit").val($(atrr).attr('codeHouse'));
     $("#nameEdit").val($(atrr).attr('nameHouse'));
@@ -220,4 +265,28 @@ function editHouseHold(atrr){
     $("#datebirth").val($(atrr).attr('dataBirth'));
     $("#address").val($(atrr).attr('address'));
     $("#modalEdit").modal("show");
+}
+
+function formatDate(d) {
+    date = new Date(d)
+    let dd = date.getDate();
+    let mm = date.getMonth()+1;
+    let yyyy = date.getFullYear();
+    if(dd<10) {dd='0'+dd};
+    if(mm<10) {mm='0'+mm};
+    return d = dd+'/'+mm+'/'+yyyy
+}
+
+function transferDisplay(atrr) {
+    let input = $('#dataWater_' + $(atrr).attr('codeHouse'))[0];
+    if(input.disabled) {
+        input.disabled = false;
+    } else {
+        input.disabled = true;
+    }
+}
+
+function resetInformation() {
+    $("#searchname").val("");
+    $("#searchcode").val("");
 }

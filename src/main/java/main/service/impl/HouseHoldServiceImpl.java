@@ -1,5 +1,6 @@
 package main.service.impl;
 
+import main.beans.HouseHoldBeans;
 import main.entity.HouseHold;
 import main.repository.HouseHoldRepository;
 import main.service.HouseHoldService;
@@ -20,12 +21,18 @@ public class HouseHoldServiceImpl implements HouseHoldService {
     HouseHoldRepository houseHoldRepository;
 
     @Override
-    public List<HouseHold> findAllHousehouseByAddress(String address) {
-        return houseHoldRepository.findAllByAddressLike(address);
+    public List<HouseHold> findAllHousehouseByAddress(HouseHoldBeans houseHoldBeans) {
+        return houseHoldRepository.findByAddressAndName("%" + houseHoldBeans.getCity() + "%", "%" + houseHoldBeans.getDistrinct() + "%",
+                "%" + houseHoldBeans.getWard() + "%", "%" + houseHoldBeans.getNamehouse() + "%");
     }
 
     @Override
     public void saveHouseHold(HouseHold houseHold) {
         houseHoldRepository.save(houseHold);
+    }
+
+    @Override
+    public HouseHold findByCodeHouse(String codeHouse) {
+        return houseHoldRepository.findByCodeHouse(codeHouse);
     }
 }
