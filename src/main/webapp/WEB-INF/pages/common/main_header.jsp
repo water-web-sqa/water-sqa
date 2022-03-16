@@ -5,10 +5,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ page import="main.common.CommonConst" %>
 
-<jsp:include page="css_common.jsp"/>
-<jsp:include page="js_common.jsp"/>
-<!DOCTYPE html>
-<html>
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
@@ -25,6 +21,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <jsp:include page="css_common.jsp"/>
+    <jsp:include page="js_common.jsp"/>
 </head>
     <style>
         .ftco-section{

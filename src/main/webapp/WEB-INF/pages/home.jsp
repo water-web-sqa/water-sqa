@@ -51,45 +51,45 @@
 
 <div class="container">
     <div class="row justify-content-md-center p-2">
-        <div id="content" class="p-4 p-md-5">
-
+        <div id="content" class="col col-5 p-4 p-md-5">
             <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm"
                     onchange="onchangeCity(this)">
-                <option value="" selected>Chọn tỉnh thành</option>
+                <option id="cityDefault" value="" selected>Chọn tỉnh thành</option>
             </select>
 
             <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm"
                     onchange="onchangeDistrict(this)">
-                <option value="" selected>Chọn quận huyện</option>
+                <option id="districtDefault" value="" selected>Chọn quận huyện</option>
             </select>
 
             <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
-                <option value="" selected>Chọn phường xã</option>
+                <option id="wardDefault" value="" selected>Chọn phường xã</option>
             </select>
 
-            <button type="submit" class="btn btn-primary" onclick="searchaddress()" style="margin-bottom: 10px; margin-top: 10px">Submit</button>
+        </div>
 
+        <div class="col col-5 p-4 p-md-5">
+            <div class="form-group">
+                <label>Họ tên</label>
+                <input type="text"
+                       class="form-control" id="searchname" placeholder="Họ và tên">
+            </div>
+            <div class="form-group">
+                <label>Mã danh bộ</label>
+                <input type="text"
+                       class="form-control" id="searchcode" placeholder="Mã danh bộ">
+            </div>
+            <button type="submit" class="btn btn-success" onclick="searchhousehold()" style="margin-bottom: 10px; margin-top: 10px">Tra cứu</button>
+            <button type="submit" class="btn btn-primary" onclick="resetInformation()" style="margin-bottom: 10px; margin-top: 10px">Nhập lại</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center p-2">
+
+        <div>
             <table class="table table-bordered table-striped"
                    style="width: 100%!important;position: relative" id="tableHouseHold">
             </table>
-
-            <%--            <table class="table table-striped table-inverse">--%>
-            <%--                <thead class="thead-inverse">--%>
-            <%--                <tr>--%>
-            <%--                    <th>STT</th>--%>
-            <%--                    <th>Mã danh bộ</th>--%>
-            <%--                    <th>Tên chủ hộ</th>--%>
-            <%--                    <th>Ngày sinh</th>--%>
-            <%--                    <th>Địa chỉ</th>--%>
-            <%--                    <th>Số nước tháng trước</th>--%>
-            <%--                    <th>Số nước tháng này</th>--%>
-            <%--                    <th>Sửa</th>--%>
-            <%--                </tr>--%>
-            <%--                </thead>--%>
-            <%--                <tbody class="dataSearch">--%>
-
-            <%--                </tbody>--%>
-            <%--            </table>--%>
         </div>
     </div>
 </div>
@@ -161,9 +161,6 @@
                         </div>
                     </div>
 
-
-
-
                 </div>
             </div>
             <div class="modal-footer" style="justify-content: space-around;border: none">
@@ -180,8 +177,8 @@
     let urlSearchAddress = rootPath + '<%=URLConst.User.USER_SEARCH_HOUSEHOLD%>'
     let urlGetWaterSupplier = rootPath + '<%=URLConst.Water.GET_WATER_SUPPLIER%>'
     let urlEditHouseHold = rootPath + '<%=URLConst.Water.UPDATE_HOUSE_HOLD%>'
+    let urlUpdateWaterNumber = rootPath + '<%=URLConst.Water.UPDATE_WATER_MONEY%>'
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
 <script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
 <jsp:include page="common/footer.jsp"/>
