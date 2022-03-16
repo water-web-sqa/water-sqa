@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.common.CommonConst;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 
@@ -37,8 +39,9 @@ public class HomeController extends BaseController{
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView user(Model model, HttpServletRequest request, Principal principal) {
-
-        return new ModelAndView("main");
+        HttpSession session = request.getSession();
+        session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER);
+        return new ModelAndView("home");
     }
 }
 

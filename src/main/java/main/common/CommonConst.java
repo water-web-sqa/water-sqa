@@ -39,6 +39,13 @@ public class CommonConst {
 
 	}
 
+	public static class COMMON_USER_PAGE {
+		public static String WATER = "1";
+		public static String WATER1 = "2";
+		public static String WATER2 = "3";
+
+	}
+
 
 
 	public static class DATE_FORMAT {

@@ -17,6 +17,18 @@
     <link href="<c:url value = "/resources/css/main.css" />" rel="stylesheet"/>
     <link href="<c:url value = "/resources/css/util.css" />" rel="stylesheet"/>
 
+    <!------------------- CSS ------------------->
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+    <!------------------- JS ------------------->
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <style>
 
 
@@ -260,67 +272,67 @@
             display: block;
             width: 100%;
             height: 100%;
-            top: 0;
+            top: -35px;
             left: 0;
             pointer-events: none;
         }
 
-        .focus-input100::before {
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
+        /*.focus-input100::before {*/
+        /*    content: "";*/
+        /*    display: block;*/
+        /*    position: absolute;*/
+        /*    bottom: -2px;*/
+        /*    left: 0;*/
+        /*    width: 0;*/
+        /*    height: 2px;*/
 
-            -webkit-transition: all 0.4s;
-            -o-transition: all 0.4s;
-            -moz-transition: all 0.4s;
-            transition: all 0.4s;
+        /*    -webkit-transition: all 0.4s;*/
+        /*    -o-transition: all 0.4s;*/
+        /*    -moz-transition: all 0.4s;*/
+        /*    transition: all 0.4s;*/
 
-            background: #6a7dfe;
-            background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-            background: -o-linear-gradient(left, #21d4fd, #b721ff);
-            background: -moz-linear-gradient(left, #21d4fd, #b721ff);
-            background: linear-gradient(left, #21d4fd, #b721ff);
-        }
+        /*    background: #6a7dfe;*/
+        /*    background: -webkit-linear-gradient(left, #21d4fd, #b721ff);*/
+        /*    background: -o-linear-gradient(left, #21d4fd, #b721ff);*/
+        /*    background: -moz-linear-gradient(left, #21d4fd, #b721ff);*/
+        /*    background: linear-gradient(left, #21d4fd, #b721ff);*/
+        /*}*/
 
-        .focus-input100::after {
-            font-family: Poppins-Regular;
-            font-size: 15px;
-            color: #999999;
-            line-height: 1.2;
+        /*.focus-input100::after {*/
+        /*    font-family: Poppins-Regular;*/
+        /*    font-size: 15px;*/
+        /*    color: #999999;*/
+        /*    line-height: 1.2;*/
 
-            content: attr(data-placeholder);
-            display: block;
-            width: 100%;
-            position: absolute;
-            top: 16px;
-            left: 0px;
-            padding-left: 5px;
+        /*    content: attr(data-placeholder);*/
+        /*    display: block;*/
+        /*    width: 100%;*/
+        /*    position: absolute;*/
+        /*    top: 16px;*/
+        /*    left: 0px;*/
+        /*    padding-left: 5px;*/
 
-            -webkit-transition: all 0.4s;
-            -o-transition: all 0.4s;
-            -moz-transition: all 0.4s;
-            transition: all 0.4s;
-        }
+        /*    -webkit-transition: all 0.4s;*/
+        /*    -o-transition: all 0.4s;*/
+        /*    -moz-transition: all 0.4s;*/
+        /*    transition: all 0.4s;*/
+        /*}*/
 
-        .input100:focus + .focus-input100::after {
-            top: -15px;
-        }
+        /*.input100:focus + .focus-input100::after {*/
+        /*    top: -15px;*/
+        /*}*/
 
-        .input100:focus + .focus-input100::before {
-            width: 100%;
-        }
+        /*.input100:focus + .focus-input100::before {*/
+        /*    width: 100%;*/
+        /*}*/
 
-        .has-val.input100 + .focus-input100::after {
-            top: -15px;
-        }
+        /*.has-val.input100 + .focus-input100::after {*/
+        /*    top: -15px;*/
+        /*}*/
 
-        .has-val.input100 + .focus-input100::before {
-            width: 100%;
-        }
+        /*.has-val.input100 + .focus-input100::before {*/
+        /*    width: 100%;*/
+        /*}*/
 
         /*---------------------------------------------*/
         .btn-show-pass {
@@ -511,56 +523,69 @@
     </style>
 </head>
 <body>
+
 <div>
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100">
-                <form class="login100-form validate-form" action="<c:url value='/login-process' />" method="POST">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="<c:url value = "/resources/image/undraw_remotely_2j6y.svg" />" alt="Image" class="img-fluid"/>
+                </div>
+                <div class="col-lg-6" style="display: flex;
+    align-items: center;
+    justify-content: center;">
+                    <div class="wrap-login100">
+                        <form class="login100-form validate-form" action="<c:url value='/login-process' />" method="POST">
 					<span class="login100-form-title p-b-26">
-						Welcome
+						Hệ thống quản lý nước
 					</span>
-                    <span class="login100-form-title p-b-48">
+                            <span class="login100-form-title p-b-48">
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                        <input class="input100" type="text" name="username" id="username">
-                        <span class="focus-input100" data-placeholder="Email"></span>
-                    </div>
+                            <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+                                <span class="focus-input100" data-placeholder="Tên đăng nhập"></span>
+                                <input class="input100" type="text" name="username" id="username">
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-                        <input class="input100" name="password" id="password" type="password">
-                        <span class="focus-input100" data-placeholder="Password"></span>
+                                <span class="focus-input100" data-placeholder="Mật khẩu"></span>
+                                <input class="input100"  name="password" id="password" type="password">
+
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn" style="height: 80px !important;">
+                                    <input type="submit" class="login100-form-btn" style="color: #333; !important;" value="Đăng nhập">
+                                </div>
+                            </div>
+
+                            <div style="margin-left: 50px; margin-top: 10px;">
+                                <%
+                                    String err = request.getParameter("error");
+                                    if ("true".equals(err)) {
+                                        out.print("<h5 style=\"color: red;\">Sai thông tin đăng nhập</h5>");
+                                    }
+                                %>
+                            </div>
+
+                            <%--                    <div class="text-center p-t-115">--%>
+                            <%--						<span class="txt1">--%>
+                            <%--							Don’t have an account?--%>
+                            <%--						</span>--%>
+
+                            <%--                        <a class="txt2" href="#">--%>
+                            <%--                            Sign Up--%>
+                            <%--                        </a>--%>
+                            <%--                    </div>--%>
+                        </form>
                     </div>
 
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn" style="height: 80px !important;">
-                            <input type="submit" lass="login100-form-btn" value="Đăng nhập">
-                        </div>
-                    </div>
-
-                    <div style="margin-left: 50px; margin-top: 10px;">
-                        <%
-                            String err = request.getParameter("error");
-                            if ("true".equals(err)) {
-                                out.print("<h5 style=\"color: red;\">Sai thông tin đăng nhập</h5>");
-                            }
-                        %>
-                    </div>
-
-                    <div class="text-center p-t-115">
-						<span class="txt1">
-							Don’t have an account?
-						</span>
-
-                        <a class="txt2" href="#">
-                            Sign Up
-                        </a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

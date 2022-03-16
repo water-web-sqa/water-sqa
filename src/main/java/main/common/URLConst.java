@@ -26,4 +26,10 @@ public class URLConst {
         public static final String UPDATE_WATER_MONEY = WATER_HOME + "/updateWaterMoney";
     }
 
+    public class User {
+        public static final String URL_USER = "/user";
+
+        public static final String USER_SEARCH_HOUSEHOLD = URL_USER + "/search";
+    }
+
 }
