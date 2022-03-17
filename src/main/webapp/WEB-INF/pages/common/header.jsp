@@ -160,6 +160,7 @@
     .textActive{
         color: white !important;
         font-size: 15px;
+        text-decoration: auto;
     }
 
     select option[selected]{
