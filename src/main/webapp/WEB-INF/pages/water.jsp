@@ -221,6 +221,7 @@
     let urlGetWaterSupplier = rootPath + '<%=URLConst.Water.GET_WATER_SUPPLIER%>'
     let urlEditHouseHold = rootPath + '<%=URLConst.Water.UPDATE_HOUSE_HOLD%>'
     let urlUpdateWaterNumber = rootPath + '<%=URLConst.Water.UPDATE_WATER_MONEY%>'
+    let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
