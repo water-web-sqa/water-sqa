@@ -16,10 +16,12 @@
 
     <link href="<c:url value = "/resources/css/main.css" />" rel="stylesheet"/>
     <link href="<c:url value = "/resources/css/style.css" />" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/householdsearch.css" />" rel="stylesheet" type="text/css">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <jsp:include page="css_common.jsp"/>
     <jsp:include page="js_common.jsp"/>

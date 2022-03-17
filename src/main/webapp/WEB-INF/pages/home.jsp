@@ -49,48 +49,96 @@
 <%--</div>--%>
 
 
-<div class="container">
-    <div class="row justify-content-md-center p-2">
-        <div id="content" class="col col-5 p-4 p-md-5">
-            <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm"
-                    onchange="onchangeCity(this)">
-                <option id="cityDefault" value="" selected>Chọn tỉnh thành</option>
-            </select>
-
-            <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm"
-                    onchange="onchangeDistrict(this)">
-                <option id="districtDefault" value="" selected>Chọn quận huyện</option>
-            </select>
-
-            <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
-                <option id="wardDefault" value="" selected>Chọn phường xã</option>
-            </select>
-
-        </div>
-
-        <div class="col col-5 p-4 p-md-5">
-            <div class="form-group">
-                <label>Họ tên</label>
-                <input type="text"
-                       class="form-control" id="searchname" placeholder="Họ và tên">
-            </div>
-            <div class="form-group">
-                <label>Mã danh bộ</label>
-                <input type="text"
-                       class="form-control" id="searchcode" placeholder="Mã danh bộ">
-            </div>
-            <button type="submit" class="btn btn-success" onclick="searchhousehold()" style="margin-bottom: 10px; margin-top: 10px">Tra cứu</button>
-            <button type="submit" class="btn btn-primary" onclick="resetInformation()" style="margin-bottom: 10px; margin-top: 10px">Nhập lại</button>
-        </div>
+<div class="container mt-5">
+    <div class="col-xs-12 none-padding">
+        <ul class="ul-tieude">
+            <li>
+                <div>TRA CỨU THÔNG TIN HỘ GIA ĐÌNH</div>
+            </li>
+            <li></li>
+        </ul>
     </div>
 
-    <div class="row justify-content-md-center p-2">
+    <div class="col-xs-12 none-padding">
+        <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
+            <div class="col-xs-12 none-padding form-customer">
 
-        <div>
-            <table class="table table-bordered table-striped"
-                   style="width: 100%!important;position: relative" id="tableHouseHold">
-            </table>
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tỉnh/TP</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <select class="form-select form-select-sm edit-input" id="city"
+                                    aria-label=".form-select-sm" onchange="onchangeCity(this)">
+                                <option id="cityDefault" value="" selected>-Chọn tỉnh-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Quận/Huyện</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <select class="form-select form-select-sm edit-input" id="district"
+                                    aria-label=".form-select-sm" onchange="onchangeDistrict(this)">
+                                <option id="districtDefault" value="" selected>-Chọn quận huyện-</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Họ tên</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <input type="text" class="form-select form-select-sm edit-input" id="searchname"
+                                   style="background-image: none;" placeholder="Họ và tên">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Phường/Xã</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <select class="form-select form-select-sm edit-input" id="ward"
+                                    aria-label=".form-select-sm">
+                                <option id="wardDefault" value="" selected>- Chọn phường xã -</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Mã danh bộ</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <input type="text" class="form-select form-select-sm edit-input" id="searchcode"
+                                   style="background-image: none;" placeholder="Mã danh bộ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding" style="margin-top: 30px;">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <div class="g-recaptcha" style="display: flex; justify-content: space-around;" data-callback="recaptchaCallback"
+                             data-sitekey="6LcCsuUeAAAAAMsaHa2KPNI-kyBcEdn2DfqMDg8S">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>
+                            <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="searchhousehold()" disabled>Tra cứu</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding" style="padding: 48px">
+                    <table class="table table-bordered table-striped" style="width: 100%!important;position: relative"
+                           id="tableHouseHold">
+                    </table>
+                </div>
+            </div>
         </div>
+
+
     </div>
 </div>
 
@@ -179,6 +227,7 @@
     let urlEditHouseHold = rootPath + '<%=URLConst.Water.UPDATE_HOUSE_HOLD%>'
     let urlUpdateWaterNumber = rootPath + '<%=URLConst.Water.UPDATE_WATER_MONEY%>'
 </script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
 <script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
 <jsp:include page="common/footer.jsp"/>

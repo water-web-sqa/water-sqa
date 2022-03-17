@@ -44,54 +44,6 @@
         right: 0 !important;
     }
 </style>
-<%--<div class="col-12" style="min-height: 70%; background-color: #f9f9ff">--%>
-<%--    --%>
-<%--</div>--%>
-
-
-<%--<div class="container">--%>
-<%--    <div class="row justify-content-md-center p-2">--%>
-<%--        <div id="content" class="col col-5 p-4 p-md-5">--%>
-<%--                <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm"--%>
-<%--                        onchange="onchangeCity(this)">--%>
-<%--                    <option id="cityDefault" value="" selected>Chọn tỉnh thành</option>--%>
-<%--                </select>--%>
-
-<%--                <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm"--%>
-<%--                        onchange="onchangeDistrict(this)">--%>
-<%--                    <option id="districtDefault" value="" selected>Chọn quận huyện</option>--%>
-<%--                </select>--%>
-
-<%--                <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">--%>
-<%--                    <option id="wardDefault" value="" selected>Chọn phường xã</option>--%>
-<%--                </select>--%>
-<%--            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LcCsuUeAAAAAMsaHa2KPNI-kyBcEdn2DfqMDg8S"></div>--%>
-<%--        </div>--%>
-
-<%--        <div class="col col-5 p-4 p-md-5">--%>
-<%--            <div class="form-group">--%>
-<%--                <label>Họ tên</label>--%>
-<%--                <input type="text"--%>
-<%--                       class="form-control" id="searchname" placeholder="Họ và tên">--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label>Mã danh bộ</label>--%>
-<%--                <input type="text"--%>
-<%--                       class="form-control" id="searchcode" placeholder="Mã danh bộ">--%>
-<%--            </div>--%>
-<%--            <button type="submit" id="submitBtn" class="btn-red col-md-4 col-sm-5 col-xs-5" onclick="searchhousehold()" disabled>Tra cứu</button>--%>
-<%--            <button type="reset" class="btn-blue col-md-4 col-sm-5 col-xs-5" onclick="resetInformation()">Nhập lại</button>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-
-<%--    <div class="row justify-content-md-center p-2">--%>
-<%--        <div>--%>
-<%--            <table class="table table-bordered table-striped"--%>
-<%--                   style="width: 100%!important;position: relative" id="tableHouseHold">--%>
-<%--            </table>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <div class="container mt-5">
     <div class="col-xs-12 none-padding">
