@@ -35,7 +35,7 @@ function getWaterSupplier(){
 }
 function initData() {
     $.ajax({
-        url: './resources/data/location.json',
+        url: urlGetResourceLocation,
         error: function() {
             //$('#info').html('<p>An error has occurred</p>');
             showMessage.show(msgMune.titlej002, "Insert Error Truck", null, () => {$('#myDialog').modal('hide')});
