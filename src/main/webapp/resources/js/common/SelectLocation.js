@@ -181,14 +181,14 @@ function searchhousehold(all) {
                 title: 'Số nước tháng này', data: 'nowWater', render: (val, row, col) => {
                     let numberwater = (val) ? val.numberWater : '';
                     return '<input id="dataWater_'+col.houseHold.codeHouse+'" value="'+numberwater+'" disabled />' +
-                        '<i class="fa fa-eye" style="margin: 0 15px;" codeHouse="'+col.houseHold.codeHouse+'" onclick="transferDisplay(this)"></i>'
+                        '<i class="fa fa-eye enable-click" style="margin: 0 15px;" codeHouse="'+col.houseHold.codeHouse+'" onclick="transferDisplay(this)"></i>'
                 }
             },
             {
                 title: '', data: 'houseHold', render: (val,row,col) => {
                     return '<div id="editHouseHold">' +
-                        '<i class="fa fa-save" style="font-size: 17px; color: blue; margin: 0 10px;" codeHouse="'+col.houseHold.codeHouse+'" onclick="saveNumberWater(this)"></i>' +
-                        '<i class="fa fa-pen" codeHouse="'+col.houseHold.codeHouse+'"  idSupplier="'+col.houseHold.idSupplier+'" nameHouse="'+col.houseHold.nameHouse+'"  address="'+col.houseHold.address+'" dataBirth="'+col.houseHold.dataBirth+'" style="color: #34CEFF;font-size: 15px" onclick="editHouseHold(this)"></i>'
+                        '<i class="fa fa-save enable-click" style="font-size: 17px; color: blue; margin: 0 10px;" codeHouse="'+col.houseHold.codeHouse+'" onclick="saveNumberWater(this)"></i>' +
+                        '<i class="fa fa-pen enable-click" codeHouse="'+col.houseHold.codeHouse+'"  idSupplier="'+col.houseHold.idSupplier+'" nameHouse="'+col.houseHold.nameHouse+'"  address="'+col.houseHold.address+'" dataBirth="'+col.houseHold.dataBirth+'" style="color: #34CEFF;font-size: 15px" onclick="editHouseHold(this)"></i>'
                     '</div>'
                 }
             },

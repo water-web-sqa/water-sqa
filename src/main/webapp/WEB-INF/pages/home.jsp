@@ -67,7 +67,7 @@
                     <div class="col-md-6 col-xs-12 form-group form-left">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tỉnh/TP</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="city"
+                            <select class="form-select form-select-sm edit-input enable-click" id="city"
                                     aria-label=".form-select-sm" onchange="onchangeCity(this)">
                                 <option id="cityDefault" value="" selected>-Chọn tỉnh-</option>
                             </select>
@@ -77,7 +77,7 @@
                     <div class="col-md-6 col-xs-12 form-group">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Quận/Huyện</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="district"
+                            <select class="form-select form-select-sm edit-input enable-click" id="district"
                                     aria-label=".form-select-sm" onchange="onchangeDistrict(this)">
                                 <option id="districtDefault" value="" selected>-Chọn quận huyện-</option>
                             </select>
@@ -97,7 +97,7 @@
                     <div class="col-md-6 col-xs-12 form-group">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Phường/Xã</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="ward"
+                            <select class="form-select form-select-sm edit-input enable-click" id="ward"
                                     aria-label=".form-select-sm">
                                 <option id="wardDefault" value="" selected>- Chọn phường xã -</option>
                             </select>

@@ -63,7 +63,7 @@
                     <div class="col-md-6 col-xs-12 form-group form-left">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tỉnh/TP</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="city"
+                            <select class="form-select form-select-sm edit-input enable-click" id="city"
                                     aria-label=".form-select-sm" onchange="onchangeCity(this)">
                                 <option id="cityDefault" value="" selected>-Chọn tỉnh-</option>
                             </select>
@@ -73,7 +73,7 @@
                     <div class="col-md-6 col-xs-12 form-group">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Quận/Huyện</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="district"
+                            <select class="form-select form-select-sm edit-input enable-click" id="district"
                                     aria-label=".form-select-sm" onchange="onchangeDistrict(this)">
                                 <option id="districtDefault" value="" selected>-Chọn quận huyện-</option>
                             </select>
@@ -93,7 +93,7 @@
                     <div class="col-md-6 col-xs-12 form-group">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Phường/Xã</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input" id="ward"
+                            <select class="form-select form-select-sm edit-input enable-click" id="ward"
                                     aria-label=".form-select-sm">
                                 <option id="wardDefault" value="" selected>- Chọn phường xã -</option>
                             </select>
@@ -109,19 +109,11 @@
                                    style="background-image: none;" placeholder="Mã danh bộ">
                         </div>
                     </div>
-                </div>
-
-                <div class="col-xs-12 none-padding" style="margin-top: 30px;">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <div class="g-recaptcha" style="display: flex; justify-content: space-around;" data-callback="recaptchaCallback"
-                             data-sitekey="6LcCsuUeAAAAAMsaHa2KPNI-kyBcEdn2DfqMDg8S">
-                        </div>
-                    </div>
 
                     <div class="col-md-6 col-xs-12 form-group">
                         <div style="display: flex; justify-content: center;">
                             <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>
-                            <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="searchhousehold()" disabled>Tra cứu</button>
+                            <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="searchhousehold()">Tra cứu</button>
                         </div>
                     </div>
                 </div>
