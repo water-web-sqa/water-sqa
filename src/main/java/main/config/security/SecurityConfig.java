@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -55,9 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/login", "/logout", "/login-process").permitAll();
 		http.authorizeRequests().antMatchers("/api/user/register").permitAll();
 		http.authorizeRequests().antMatchers("/api/login").permitAll();
-		http.authorizeRequests().antMatchers("/payoo/*").permitAll();
+		http.authorizeRequests().antMatchers("/payoo/**").permitAll();
 		//http.authorizeRequests().antMatchers("/api/**").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
+
 
 		// Cấu hình cho Login Form.
 		http.authorizeRequests().and().formLogin()//

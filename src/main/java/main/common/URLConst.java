@@ -27,7 +27,7 @@ public class URLConst {
     }
 
     public class User {
-        public static final String URL_USER = "/user";
+        public static final String URL_USER = "/payoo";
 
         public static final String USER_SEARCH_HOUSEHOLD = URL_USER + "/search";
     }
