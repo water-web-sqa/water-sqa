@@ -10,6 +10,7 @@
     <jsp:include page="js_common.jsp"/>
     <title>Main</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="<c:url value="/resources/css/householdsearch.css" />" rel="stylesheet" type="text/css">
     <script src="<c:url value="/resources/js/datepicker-ja.js" />"></script>
 </head>
 <style>
@@ -159,7 +160,6 @@
     .textActive{
         color: white !important;
         font-size: 15px;
-        text-decoration: auto;
     }
 
     select option[selected]{
