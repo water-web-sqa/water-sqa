@@ -49,7 +49,6 @@ public class WaterController extends BaseController{
 		return new ModelAndView("water");
 	}
 
-
 	@RequestMapping(value = URLConst.Water.WATER_HOME_1 , method = RequestMethod.GET)
 	public ModelAndView view2(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
