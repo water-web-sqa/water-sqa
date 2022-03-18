@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface WaterMoneyRepository extends JpaRepository<WaterMoney, Integer> {
 
-    @Query(value = "SELECT * FROM quanlynuoc.water_money \n " +
+    @Query(value = "SELECT * FROM water_money \n " +
             "WHERE code_house = ? \n " +
             "AND year(date_water) = YEAR(CURRENT_TIMESTAMP) \n " +
             "AND month(date_water) = MONTH(CURRENT_TIMESTAMP) \n " +
@@ -18,13 +18,13 @@ public interface WaterMoneyRepository extends JpaRepository<WaterMoney, Integer>
     WaterMoney findDateWaterLast(String codeHouse);
 
     @Modifying
-    @Query(value = "INSERT INTO quanlynuoc.water_money " +
+    @Query(value = "INSERT INTO water_money " +
             "(date_water, number_water, code_house) \n" +
             "VALUES (CURRENT_DATE, ?, ?);", nativeQuery = true)
     void saveWaterMoney(Integer numberWater, String codeHouse);
 
     @Modifying
-    @Query(value = "DELETE FROM quanlynuoc.water_money\n" +
+    @Query(value = "DELETE FROM water_money\n" +
             "WHERE code_house = ? \n" +
             "AND date_water = CURRENT_DATE", nativeQuery = true)
     void deleteDateWaterNow(String codeHouse);
