@@ -13,6 +13,7 @@ public class HouseHold {
     private String address;
     private Date dataBirth;
     private int idSupplier;
+    private String typeHouse;
 
     public HouseHold() {
     }
@@ -73,5 +74,15 @@ public class HouseHold {
 
     public void setIdSupplier(int idSupplier) {
         this.idSupplier = idSupplier;
+    }
+
+    @Basic
+    @Column(name = "type_house")
+    public String getTypeHouse() {
+        return typeHouse;
+    }
+
+    public void setTypeHouse(String typeHouse) {
+        this.typeHouse = typeHouse;
     }
 }
