@@ -52,7 +52,7 @@ public class UserController {
             }
             List<HouseHoldWaterBeans> list = new ArrayList<>();
             houseHolds.forEach(houseHold -> {
-                list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse())));
+//                list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse())));
             });
 
             result.put("draw", 1);

@@ -49,7 +49,7 @@
     <div class="col-xs-12 none-padding">
         <ul class="ul-tieude">
             <li>
-                <div>TRA CỨU THÔNG TIN HỘ GIA ĐÌNH</div>
+                <div>TRA CỨU THÔNG TIN SỬ DỤNG NƯỚC CỦA HỘ GIA ĐÌNH</div>
             </li>
             <li></li>
         </ul>
@@ -110,6 +110,18 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Thời gian</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                                <input type="month" class="form-select form-select-sm edit-input" id="chooseTime"
+                                       style="background-image: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding">
                     <div class="col-md-6 col-xs-12 form-group">
                         <div style="display: flex; justify-content: center;">
                             <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>

@@ -111,7 +111,8 @@ function searchhousehold(all) {
             distrinct: "",
             ward: "",
             namehouse: "",
-            codehouse: "12345@Df"
+            codehouse: "12345@Df",
+            timesearch: ""
         };
     }
     else{
@@ -120,7 +121,8 @@ function searchhousehold(all) {
             distrinct: ($("#district option:selected")[0].innerText == $("#districtDefault")[0].innerText) ? "" : $("#district option:selected")[0].innerText,
             ward: ($("#ward option:selected")[0].innerText == $("#wardDefault")[0].innerText) ? "" : $("#ward option:selected")[0].innerText,
             namehouse: $("#searchname").val(),
-            codehouse: $("#searchcode").val()
+            codehouse: $("#searchcode").val(),
+            timesearch: new Date($("#chooseTime").val())
         };
     }
 

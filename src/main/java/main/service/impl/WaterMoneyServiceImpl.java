@@ -24,22 +24,22 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
     WaterMoneyRepository waterMoneyRepository;
 
     @Override
-    public WaterMoney findWaterMoneyByHouseHold(String codeHouse) {
-        WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse);
+    public WaterMoney findWaterMoneyByHouseHold(String codeHouse, Integer month, Integer year) {
+        WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse, month, year);
         return result;
     }
 
-    @Override
-    public void updateWaterMoney(Integer numberWater, String codeHouse) {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            WaterMoney waterMoney = waterMoneyRepository.findDateWaterLast(codeHouse);
-            if(waterMoney != null && formatter.format(waterMoney.getDateWater()).compareTo(formatter.format(new Date())) == 0) {
-                waterMoneyRepository.deleteDateWaterNow(codeHouse);
-            }
-            waterMoneyRepository.saveWaterMoney(numberWater, codeHouse);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+//    @Override
+//    public void updateWaterMoney(Integer numberWater, String codeHouse) {
+//        try {
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//            WaterMoney waterMoney = waterMoneyRepository.findDateWaterLast(codeHouse);
+//            if(waterMoney != null && formatter.format(waterMoney.getDateWater()).compareTo(formatter.format(new Date())) == 0) {
+//                waterMoneyRepository.deleteDateWaterNow(codeHouse);
+//            }
+//            waterMoneyRepository.saveWaterMoney(numberWater, codeHouse);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 }

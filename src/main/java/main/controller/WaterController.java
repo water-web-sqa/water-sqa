@@ -73,7 +73,8 @@ public class WaterController extends BaseController{
 			}
 			List<HouseHoldWaterBeans> list = new ArrayList<>();
 			houseHolds.forEach(houseHold -> {
-				list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse())));
+				list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse(),
+						houseHoldBeans.getTimesearch().getMonth(), houseHoldBeans.getTimesearch().getYear())));
 			});
 
 			result.put("draw", 1);
@@ -119,7 +120,7 @@ public class WaterController extends BaseController{
 	public WrapperResponse<Boolean> updateWaterMoney(@RequestBody WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
 		WrapperResponse<Boolean> response = new WrapperResponse<>();
 		try {
-			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans.getNumberWater(), waterMoneyUpdateBeans.getCodeHouse());
+//			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans.getNumberWater(), waterMoneyUpdateBeans.getCodeHouse());
 			response.setStatus(200);
 			response.setBody(true);
 			response.setMsg("Success");

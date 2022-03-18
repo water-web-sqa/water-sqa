@@ -1,8 +1,10 @@
 package main.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,6 +14,9 @@ public class WaterMoney {
     private Date dateWater;
     private int numberWater;
     private String codeHouse;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    protected LocalDateTime createdAt;
 
     public WaterMoney() {
     }
@@ -62,5 +67,13 @@ public class WaterMoney {
 
     public void setCodeHouse(String codeHouse) {
         this.codeHouse = codeHouse;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
