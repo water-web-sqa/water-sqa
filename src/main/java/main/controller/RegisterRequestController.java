@@ -23,7 +23,7 @@ public class RegisterRequestController {
     @Autowired
     CustomerRegisterService customerRegisterService;
 
-    @GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
+    @GetMapping(value = URLConst.Water.GET_REQUEST_RESIGTER_WATER)
     @ResponseBody
     public HashMap<String, Object> getAllRegisterRequest() {
         HashMap<String, Object> result = new HashMap<>();

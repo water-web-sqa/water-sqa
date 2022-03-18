@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `quanlynuoc` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `quanlynuoc`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: quanlynuoc
@@ -43,6 +41,37 @@ LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
 INSERT INTO `bill` VALUES (1,1,1,20);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_register`
+--
+
+DROP TABLE IF EXISTS `customer_register`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customer_register` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name_house` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `data_birth` date NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `status` int DEFAULT '0',
+  `id_supplier` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idsupplier_idx` (`id_supplier`),
+  CONSTRAINT `idsupplier` FOREIGN KEY (`id_supplier`) REFERENCES `water_supplier` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_register`
+--
+
+LOCK TABLES `customer_register` WRITE;
+/*!40000 ALTER TABLE `customer_register` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_register` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -192,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-17 10:27:22
+-- Dump completed on 2022-03-18 21:37:38
