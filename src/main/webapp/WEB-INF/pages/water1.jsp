@@ -7,7 +7,9 @@
 <jsp:include page="common/header.jsp"/>
 
 <div class="container mt-5">
-
+    <table class="table table-bordered table-striped" style="width: 100%!important;position: relative"
+           id="tableHouseHold">
+    </table>
 </div>
 
 <div class="modal" tabindex="-1" id="modalEdit" role="dialog">
@@ -93,6 +95,7 @@
     let urlGetWaterSupplier = rootPath + '<%=URLConst.Water.GET_WATER_SUPPLIER%>'
     let urlEditHouseHold = rootPath + '<%=URLConst.Water.UPDATE_HOUSE_HOLD%>'
     let urlUpdateWaterNumber = rootPath + '<%=URLConst.Water.UPDATE_WATER_MONEY%>'
+    let urlRequestResigter = rootPath + '<%=URLConst.Water.GET_REQUEST_RESIGTER_WATER%>'
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
