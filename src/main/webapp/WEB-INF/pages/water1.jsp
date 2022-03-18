@@ -14,7 +14,9 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/common/Const.js"></script>
 <script>
-    let urlRequestResigter = rootPath + '<%=URLConst.Water.GET_REQUEST_RESIGTER_WATER%>'
+    let urlFetchData = rootPath + '<%=URLConst.Water.WATER_HOME%>'
+    let urlGetWaterSupplier = rootPath + '<%=URLConst.Water.GET_WATER_SUPPLIER%>'
+    let urlRequestResigterWater = rootPath + '<%=URLConst.Water.GET_REQUEST_RESIGTER_WATER%>'
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>

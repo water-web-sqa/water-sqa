@@ -3,7 +3,7 @@ let dataWaterRequest = null;
 
 $(document).ready(function (){
     console.log("ready!");
-    // getWaterRequest();
+    getWaterRequest();
 });
 
 function getWaterRequest() {
@@ -23,51 +23,48 @@ function getWaterRequest() {
         language: Const.DATA_TABLE_LANGUAGE,
         processing: true,
         ajax: {
-            url: urlRequestResigter,
+            url: urlRequestResigterWater,
             type: 'GET',
             dataType: "json",
             contentType: "application/json",
             error: function (e) {
                 console.log(e);
             },
-            data: function (d) {
-                return JSON.stringify(customerRegister);
-            },
         },
         ordering: false,
         columns: [
             {
-                title: 'Tên khách hàng', data: 'customerRegister', render: (val) => {
-                    return val.nameHouse
+                title: 'Tên khách hàng', data: 'nameHouse', render: (val) => {
+                    return val;
                 }
             },
             {
-                title: 'Địa chỉ', data: 'customerRegister', render: (val) => {
-                    return val.address
+                title: 'Địa chỉ', data: 'address', render: (val) => {
+                    return val;
                 }
             },
             {
-                title: 'Ngày sinh', data: 'customerRegister', render: (val) => {
-                    return formatDate(new Date(val.dataBirth));
+                title: 'Ngày sinh', data: 'dataBirth', render: (val) => {
+                    return formatDate(new Date(val));
                 }
             },
             {
-                title: 'Email', data: 'customerRegister', render: (val) => {
-                    return val.email;
+                title: 'Email', data: 'email', render: (val) => {
+                    return val;
                 }
             },
             {
-                title: 'Phone', data: 'customerRegister', render: (val) => {
-                    return val.phone;
+                title: 'Phone', data: 'phone', render: (val) => {
+                    return val;
                 }
             },
             {
-                title: 'Trạng thái', data: 'customerRegister', render: (val) => {
-                    return (val.status == 0) ? 'Chưa xét duyệt' : 'Đang xem xét';
+                title: 'Trạng thái', data: 'status', render: (val) => {
+                    return (val == 0) ? 'Chưa xét duyệt' : 'Đang xem xét';
                 }
             },
             {
-                title: '', data: 'customerRegister', render: (val,row,col) => {
+                title: '', data: 'id', render: (val,row,col) => {
                     return '<div id="actionCustomerRegister">' +
                         '<i class="fa fa-save enable-click"></i>' +
                         '<i class="fa fa-pen enable-click"></i>'
@@ -76,4 +73,14 @@ function getWaterRequest() {
             },
         ]
     });
+}
+
+function formatDate(d) {
+    date = new Date(d)
+    let dd = date.getDate();
+    let mm = date.getMonth()+1;
+    let yyyy = date.getFullYear();
+    if(dd<10) {dd='0'+dd};
+    if(mm<10) {mm='0'+mm};
+    return d = dd+'/'+mm+'/'+yyyy
 }
