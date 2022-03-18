@@ -3,7 +3,7 @@ let dataWaterRequest = null;
 
 $(document).ready(function (){
     console.log("ready!");
-    getWaterRequest();
+    // getWaterRequest();
 });
 
 function getWaterRequest() {

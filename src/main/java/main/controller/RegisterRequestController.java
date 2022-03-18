@@ -18,24 +18,24 @@ import java.util.List;
 @Controller
 @Transactional
 public class RegisterRequestController {
-    private static final Logger logger = LogManager.getLogger(WaterController.class);
-
-    @Autowired
-    CustomerRegisterService customerRegisterService;
-
-    @GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
-    @ResponseBody
-    public HashMap<String, Object> getAllRegisterRequest() {
-        HashMap<String, Object> result = new HashMap<>();
-        try {
-            List<CustomerRegister> list = customerRegisterService.allCustomerRegister();
-            result.put("draw", 1);
-            result.put("recordsTotal", list.size());
-            result.put("recordsFiltered", list.size());
-            result.put("data", list);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        return result;
-    }
+//    private static final Logger logger = LogManager.getLogger(WaterController.class);
+//
+//    @Autowired
+//    CustomerRegisterService customerRegisterService;
+//
+//    @GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
+//    @ResponseBody
+//    public HashMap<String, Object> getAllRegisterRequest() {
+//        HashMap<String, Object> result = new HashMap<>();
+//        try {
+//            List<CustomerRegister> list = customerRegisterService.allCustomerRegister();
+//            result.put("draw", 1);
+//            result.put("recordsTotal", list.size());
+//            result.put("recordsFiltered", list.size());
+//            result.put("data", list);
+//        } catch (Exception e) {
+//            logger.error(e.getMessage(), e);
+//        }
+//        return result;
+//    }
 }
