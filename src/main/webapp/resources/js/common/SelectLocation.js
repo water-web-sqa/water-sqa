@@ -36,6 +36,7 @@ function getWaterSupplier(){
         type: 'GET'
     });
 }
+
 function initData() {
     $.ajax({
         url: urlGetResourceLocation,
@@ -118,14 +119,14 @@ function searchhousehold(all) {
             timesearch: ""
         };
     }
-    else{
+    else {
         houseHoldBeans = {
             city: ($("#city option:selected")[0].innerText == $("#cityDefault")[0].innerText) ? "" : $("#city option:selected")[0].innerText,
             distrinct: ($("#district option:selected")[0].innerText == $("#districtDefault")[0].innerText) ? "" : $("#district option:selected")[0].innerText,
             ward: ($("#ward option:selected")[0].innerText == $("#wardDefault")[0].innerText) ? "" : $("#ward option:selected")[0].innerText,
             namehouse: $("#searchname").val(),
             codehouse: $("#searchcode").val(),
-            timesearch: new Date($("#chooseTime").val())
+            timesearch: ($("#chooseTime").val()) ? (new Date($("#chooseTime").val())) : new Date()
         };
     }
 

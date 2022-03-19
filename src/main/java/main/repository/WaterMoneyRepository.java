@@ -11,9 +11,6 @@ public interface WaterMoneyRepository extends JpaRepository<WaterMoney, Integer>
 
     @Query(value = "SELECT * FROM water_money \n " +
             "WHERE code_house = ? \n " +
-            "AND year(date_water) = YEAR(CURRENT_TIMESTAMP) \n " +
-            "AND month(date_water) = MONTH(CURRENT_TIMESTAMP) \n " +
-            "ORDER BY date_water DESC \n " +
             "AND month(date_water) = ? \n " +
             "AND year(date_water) = ? \n " +
             "ORDER BY created_at DESC \n " +
