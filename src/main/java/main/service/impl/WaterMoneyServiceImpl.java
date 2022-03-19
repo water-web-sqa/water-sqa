@@ -1,5 +1,6 @@
 package main.service.impl;
 
+import main.beans.WaterMoneyUpdateBeans;
 import main.entity.WaterMoney;
 import main.repository.WaterMoneyRepository;
 import main.service.WaterMoneyService;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -24,22 +26,26 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
     WaterMoneyRepository waterMoneyRepository;
 
     @Override
-    public WaterMoney findWaterMoneyByHouseHold(String codeHouse, Integer month, Integer year) {
-        WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse, month, year);
+    public WaterMoney findWaterMoneyByHouseHold(String codeHouse, Date date) {
+        SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String str = sdf.format(date);
+        System.out.println(str);
+        WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse, Integer.parseInt(str.substring(3,5)),
+                Integer.parseInt(str.substring(6, str.length())));
         return result;
     }
 
-//    @Override
-//    public void updateWaterMoney(Integer numberWater, String codeHouse) {
-//        try {
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//            WaterMoney waterMoney = waterMoneyRepository.findDateWaterLast(codeHouse);
-//            if(waterMoney != null && formatter.format(waterMoney.getDateWater()).compareTo(formatter.format(new Date())) == 0) {
-//                waterMoneyRepository.deleteDateWaterNow(codeHouse);
-//            }
-//            waterMoneyRepository.saveWaterMoney(numberWater, codeHouse);
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
+    @Override
+    public void updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
+        try {
+            WaterMoney waterMoney = new WaterMoney();
+            waterMoney.setCodeHouse(waterMoneyUpdateBeans.getCodeHouse());
+            waterMoney.setNumberWater(waterMoneyUpdateBeans.getNumberWater());
+            waterMoney.setDateWater(waterMoneyUpdateBeans.getDateWater());
+            waterMoney.setCreatedAt(LocalDateTime.now());
+            waterMoneyRepository.save(waterMoney);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

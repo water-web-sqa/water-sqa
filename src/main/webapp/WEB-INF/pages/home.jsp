@@ -53,7 +53,7 @@
     <div class="col-xs-12 none-padding">
         <ul class="ul-tieude">
             <li>
-                <div>TRA CỨU THÔNG TIN HỘ GIA ĐÌNH</div>
+                <div>XEM THÔNG TIN TIỀN NƯỚC</div>
             </li>
             <li></li>
         </ul>
@@ -62,55 +62,22 @@
     <div class="col-xs-12 none-padding">
         <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
             <div class="col-xs-12 none-padding form-customer">
-
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tỉnh/TP</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input enable-click" id="city"
-                                    aria-label=".form-select-sm" onchange="onchangeCity(this)">
-                                <option id="cityDefault" value="" selected>-Chọn tỉnh-</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Quận/Huyện</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input enable-click" id="district"
-                                    aria-label=".form-select-sm" onchange="onchangeDistrict(this)">
-                                <option id="districtDefault" value="" selected>-Chọn quận huyện-</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Họ tên</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <input type="text" class="form-select form-select-sm edit-input" id="searchname"
-                                   style="background-image: none;" placeholder="Họ và tên">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Phường/Xã</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                            <select class="form-select form-select-sm edit-input enable-click" id="ward"
-                                    aria-label=".form-select-sm">
-                                <option id="wardDefault" value="" selected>- Chọn phường xã -</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-xs-12 none-padding">
                     <div class="col-md-6 col-xs-12 form-group form-left">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Mã danh bộ</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="text" class="form-select form-select-sm edit-input" id="searchcode"
                                    style="background-image: none;" placeholder="Mã danh bộ">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Thời gian</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                                <input type="month" class="form-select form-select-sm edit-input" id="chooseTime"
+                                       style="background-image: none;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -229,8 +196,7 @@
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
-<script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common/SearchBill.js"></script>
 <jsp:include page="common/footer.jsp"/>
 
 

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class WaterController extends BaseController{
 			List<HouseHoldWaterBeans> list = new ArrayList<>();
 			houseHolds.forEach(houseHold -> {
 				list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse(),
-						houseHoldBeans.getTimesearch().getMonth(), houseHoldBeans.getTimesearch().getYear())));
+						houseHoldBeans.getTimesearch())));
 			});
 
 			result.put("draw", 1);
@@ -120,7 +121,7 @@ public class WaterController extends BaseController{
 	public WrapperResponse<Boolean> updateWaterMoney(@RequestBody WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
 		WrapperResponse<Boolean> response = new WrapperResponse<>();
 		try {
-//			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans.getNumberWater(), waterMoneyUpdateBeans.getCodeHouse());
+			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans);
 			response.setStatus(200);
 			response.setBody(true);
 			response.setMsg("Success");

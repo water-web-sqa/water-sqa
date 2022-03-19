@@ -180,7 +180,7 @@ function searchhousehold(all) {
                 }
             },
             {
-                title: 'Số nước tháng này', data: 'nowWater', render: (val, row, col) => {
+                title: 'Số nước tháng tương ứng', data: 'nowWater', render: (val, row, col) => {
                     let numberwater = (val) ? val.numberWater : '';
                     return '<input id="dataWater_'+col.houseHold.codeHouse+'" value="'+numberwater+'" disabled />' +
                         '<i class="fa fa-eye enable-click" style="margin: 0 15px;" codeHouse="'+col.houseHold.codeHouse+'" onclick="transferDisplay(this)"></i>'
@@ -232,7 +232,8 @@ function saveNumberWater(atrr) {
     // console.log(dataWater);
     let waterMoneyUpdateBeans = {
         codeHouse: $(atrr).attr('codeHouse'),
-        numberWater: $('#dataWater_' + $(atrr).attr('codeHouse'))[0].value
+        numberWater: $('#dataWater_' + $(atrr).attr('codeHouse'))[0].value,
+        dateWater: new Date($("#chooseTime").val())
     };
 
     if(!isNaN(waterMoneyUpdateBeans.numberWater) && waterMoneyUpdateBeans.numberWater > 0) {

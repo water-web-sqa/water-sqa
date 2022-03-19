@@ -14,8 +14,6 @@ public class WaterMoney {
     private Date dateWater;
     private int numberWater;
     private String codeHouse;
-    @CreationTimestamp
-    @Column(name = "created_at")
     protected LocalDateTime createdAt;
 
     public WaterMoney() {
@@ -69,6 +67,7 @@ public class WaterMoney {
         this.codeHouse = codeHouse;
     }
 
+    @Column(name = "created_at")
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
