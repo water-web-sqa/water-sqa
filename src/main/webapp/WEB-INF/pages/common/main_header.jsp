@@ -57,9 +57,9 @@
                     <c:set var="waterPageCode2" scope="session" value="<%=CommonConst.COMMON_USER_PAGE.WATER2%>"/>
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="#" class="nav-link">Trang chủ</a></li>
-                        <li class="nav-item ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="#" class="nav-link">Đăng ký sử dụng nước</a></li>
-                        <li class="nav-item ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="#" class="nav-link">Thanh toán</a></li>
+                        <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="/Water_war/payoo/customer" class="nav-link">Trang chủ</a></li>
+                        <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="/Water_war/payoo/register" class="nav-link">Đăng ký sử dụng nước</a></li>
+                        <li class="nav-item  ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="#" class="nav-link">Thanh toán</a></li>
                     </ul>
                 </div>
             </div>

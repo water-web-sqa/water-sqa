@@ -11,7 +11,7 @@ public class CustomerRegister {
     private Integer id;
     private String nameHouse;
     private String address;
-    private Date dataBirth;
+    private Date dob;
     private String email;
     private String phone;
     private int idSupplier;
@@ -21,11 +21,11 @@ public class CustomerRegister {
     }
 
     public CustomerRegister(Integer id, String nameHouse, String address,
-                            Date dataBirth, String email, String phone, int idSupplier, int status) {
+                            Date dob, String email, String phone, int idSupplier, int status) {
         this.id = id;
         this.nameHouse = nameHouse;
         this.address = address;
-        this.dataBirth = dataBirth;
+        this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.idSupplier = idSupplier;
@@ -65,13 +65,13 @@ public class CustomerRegister {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "data_birth")
-    public Date getDataBirth() {
-        return dataBirth;
+    @Column(name = "dob")
+    public Date getDob() {
+        return dob;
     }
 
-    public void setDataBirth(Date dataBirth) {
-        this.dataBirth = dataBirth;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     @Basic

@@ -31,6 +31,8 @@ public class URLConst {
     public class User {
         public static final String URL_USER = "/payoo";
 
+        public static final String USER_REGISTER_USE_WATER = URL_USER + "/register";
+
         public static final String USER_SEARCH_HOUSEHOLD = URL_USER + "/search";
 
         public static final String USER_PAY_MENT = URL_USER + "/payment";
