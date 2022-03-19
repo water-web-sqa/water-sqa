@@ -295,3 +295,20 @@ function resetInformation() {
 function recaptchaCallback() {
     $('#submitBtn').removeAttr('disabled');
 };
+
+
+function urlVnPaySubmit(){
+    $.ajax({
+        url: urlVnPay + "?codeHouse=MDB02&&vnpOrderInfo=ThanhToan&&bankcode=NCB",
+        error: function() {
+            //$('#info').html('<p>An error has occurred</p>');
+            showMessage.show(msgMune.titlej002, "Insert Error Truck", null, () => {$('#myDialog').modal('hide')});
+        },
+        // dataType: 'jsonp',
+        success: function(data) {
+            console.log(data);
+            window.open(data, "_bank");
+        },
+        type: 'GET'
+    });
+}

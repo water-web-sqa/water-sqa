@@ -119,4 +119,34 @@ public class CommonConst {
 		 */
 		public static final SimpleDateFormat formatterYYYYMM = new SimpleDateFormat("yyyyMM");
 	}
+
+	public static class HOUSE_HOLD{
+		public static String HOUSE_HOLD = "0";
+		public static String POOR_HOUSE_HOLD = "1";
+	}
+
+	public static class HOUSE_HOLD_VALID{
+		public static Integer HOUSE_HOLD_VALID_BAC_1 = 5973;
+		public static Integer HOUSE_HOLD_VALID_BAC_2 = 7052;
+		public static Integer HOUSE_HOLD_VALID_BAC_3 = 8669;
+		public static Integer HOUSE_HOLD_VALID_BAC_4 = 15929;
+		public static Integer THUE_VAT = 5/100;
+		public static Integer THUE_MOI_TRUONG = 10/100;
+	}
+
+	public static class POOR_HOUSE_HOLD_VALID{
+		public static Integer POOR_HOUSE_HOLD_VALID_BAC_1 = 3600;
+		public static Integer POOR_HOUSE_HOLD_VALID_BAC_2 = 4500;
+		public static Integer POOR_HOUSE_HOLD_VALID_BAC_3 = 5600;
+		public static Integer POOR_HOUSE_HOLD_VALID_BAC_4 = 6700;
+		public static Integer THUE_VAT = 5/100;
+		public static Integer THUE_MOI_TRUONG = 10/100;
+	}
+
+	public static int getBacHouseHold(int numberWater){
+		if(numberWater < 10) return 1;
+		if(numberWater >= 10 && numberWater < 20) return 2;
+		if(numberWater >= 20 && numberWater < 30) return 3;
+		return 4;
+	}
 }

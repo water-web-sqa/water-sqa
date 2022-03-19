@@ -196,7 +196,8 @@
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="${pageContext.request.contextPath}/resources/js/common/SearchBill.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
+<script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
 <jsp:include page="common/footer.jsp"/>
 
 
