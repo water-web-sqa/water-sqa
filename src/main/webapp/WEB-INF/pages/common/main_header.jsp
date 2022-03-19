@@ -4,6 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ page import="main.common.CommonConst" %>
+<%@ page import="main.common.URLConst" %>
 
 <head>
     <meta charset="UTF-8">
@@ -57,9 +58,9 @@
                     <c:set var="waterPageCode2" scope="session" value="<%=CommonConst.COMMON_USER_PAGE.WATER2%>"/>
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="/Water_war/payoo/customer" class="nav-link">Trang chủ</a></li>
-                        <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="/Water_war/payoo/register" class="nav-link">Đăng ký sử dụng nước</a></li>
-                        <li class="nav-item  ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="#" class="nav-link">Thanh toán</a></li>
+                        <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER%>" class="nav-link">Trang chủ</a></li>
+                        <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.USER_REGISTER_USE_WATER%>" class="nav-link">Đăng ký sử dụng nước</a></li>
+                        <li class="nav-item ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER_2%>" class="nav-link">Thanh toán</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,5 +68,25 @@
         <!-- END nav -->
 
     </section>
+</div>
+
+<div class="modal" tabindex="-1" id="myDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modelTitileDialog">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#myDialog').modal('hide')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="messageDialog">Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="buttonOkDialog" onclick="$('#myDialog').modal('hide')">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonCloseDialog" onclick="$('#myDialog').modal('hide')">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/common/Common.js"></script>

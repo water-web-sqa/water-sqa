@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface WatterRepository extends JpaRepository<WaterSupplier, Long>, QueryByExampleExecutor<WaterSupplier> {
     List<WaterSupplier> findAll();
+
+    WaterSupplier findById(Integer id);
 }

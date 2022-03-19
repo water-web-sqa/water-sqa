@@ -38,8 +38,8 @@ public class HomeController extends BaseController{
         return new ModelAndView("login");
     }
 
-    @RequestMapping(value = "/payoo/customer", method = RequestMethod.GET)
-    public ModelAndView userCheck(Model model, HttpServletRequest request, Principal principal) {
+    @RequestMapping(value = URLConst.User.WATER_HOME_USER, method = RequestMethod.GET)
+    public ModelAndView home(Model model, HttpServletRequest request, Principal principal) {
         HttpSession session = request.getSession();
         session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER);
         return new ModelAndView("home");
@@ -50,6 +50,13 @@ public class HomeController extends BaseController{
         HttpSession session = request.getSession();
         session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER1);
         return new ModelAndView("registerwatercustomer");
+    }
+
+    @RequestMapping(value = URLConst.User.WATER_HOME_USER_2, method = RequestMethod.GET)
+    public ModelAndView payment(Model model, HttpServletRequest request, Principal principal) {
+        HttpSession session = request.getSession();
+        session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER2);
+        return new ModelAndView("payment");
     }
 }
 

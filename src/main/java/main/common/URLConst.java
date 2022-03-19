@@ -1,6 +1,8 @@
 package main.common;
 
+import javax.servlet.jsp.PageContext;
 import java.io.File;
+import javax.servlet.jsp.PageContext;
 
 public class URLConst {
 
@@ -26,6 +28,7 @@ public class URLConst {
         public static final String UPDATE_WATER_MONEY = WATER_HOME + "/updateWaterMoney";
 
         public static final String GET_REQUEST_RESIGTER_WATER = WATER_HOME_2 + "/registerWater";
+
     }
 
     public class User {
@@ -37,7 +40,20 @@ public class URLConst {
 
         public static final String USER_PAY_MENT = URL_USER + "/payment";
 
-        public static final String VPN_RESPONSE_PAY_MENT = URL_USER + "/responsePayment";
+        public static final String VPN_RESPONSE_PAY_MENT = "http://localhost:8080/Water_war" + URL_USER + "/responsePayment";
+
+        public static final String VPN_RESPONSE_PAY_MENT_SERVER = URL_USER + "/responsePayment";
+
+        public static final String WATER_HOME_USER = URL_USER + "/customer";
+
+        public static final String WATER_HOME_USER_1 = URL_USER + "/customer/resgisterWater";
+
+        public static final String WATER_HOME_USER_2 = URL_USER + "/customer/payment";
+
+        public static final String GET_HOUSE_HOLD = URL_USER + "/getHouseHolde";
+
+        public static final String GET_LIST_MEMBER_WATER = URL_USER + "/getMemberWater";
+
     }
 
 }

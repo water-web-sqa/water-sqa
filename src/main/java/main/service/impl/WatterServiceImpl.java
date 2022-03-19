@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.transaction.Transactional;
-import javax.xml.ws.Action;
-import java.nio.file.WatchService;
 import java.util.List;
 
 @Service
@@ -28,6 +26,17 @@ public class WatterServiceImpl implements WatterService {
     public List<WaterSupplier> getListSupplier(){
         try {
             return watterRepository.findAll();
+        }
+        catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return null;
+    }
+
+    @Override
+    public WaterSupplier findById(Integer id) {
+        try {
+            return watterRepository.findById(id);
         }
         catch (Exception ex){
             log.error(ex.getMessage(), ex);

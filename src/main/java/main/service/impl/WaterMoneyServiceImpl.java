@@ -1,5 +1,6 @@
 package main.service.impl;
 
+import main.beans.PaymentWaterResponse;
 import main.beans.WaterMoneyUpdateBeans;
 import main.common.CommonConst;
 import main.entity.Bill;
@@ -110,7 +111,6 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
             });
 
             List<Bill> billList = billRespository.findAll();
-            Integer sum = 0;
             for(WaterMoney waterMoney : waterMoneyList){
                 boolean checkBill = false; // chưa in
                 for(Bill bill: billList){
@@ -152,5 +152,70 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    @Override
+    public List<PaymentWaterResponse> listwaterMoneyResponseByHouse(String codeHouse) {
+        List<PaymentWaterResponse> listReSult = new ArrayList<>();
+        try {
+            List<WaterMoney> listwaterMoneyNoPayMentByHouse = listwaterMoneyNoPayMentByHouse(codeHouse);
+            for(WaterMoney waterMoney: listwaterMoneyNoPayMentByHouse){
+                PaymentWaterResponse paymentWaterResponse = new PaymentWaterResponse();
+                paymentWaterResponse.setIdWaterMoney(waterMoney.getId());
+                paymentWaterResponse.setNumberWater(waterMoney.getNumberWater());
+                paymentWaterResponse.setDateWater(CommonConst.DATE_FORMAT.formatterYYYY_MM.format(waterMoney.getDateWater()));
+                String checkHouseHold = houseHoldRepository.findByCodeHouse(waterMoney.getCodeHouse()).getTypeHouse();
+                int mount = 0;
+                if(checkHouseHold.equals("0")){
+                    // ho gia dinh
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 1){
+                        mount += CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_1*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_1.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 2){
+                        mount += CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_2*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_2.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 3){
+                        mount += CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_3*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_3.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 4){
+                        mount += CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_4*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.HOUSE_HOLD_VALID.HOUSE_HOLD_VALID_BAC_4.toString());
+                    }
+                    mount = mount + mount*CommonConst.HOUSE_HOLD_VALID.THUE_VAT + mount*CommonConst.HOUSE_HOLD_VALID.THUE_MOI_TRUONG;
+                }
+
+                if(checkHouseHold.equals("1")){
+                    // ho gia dinh
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 1){
+                        mount += CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_1*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_1.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 2){
+                        mount += CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_2*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_1.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 3){
+                        mount += CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_3*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_1.toString());
+                    }
+                    if(CommonConst.getBacHouseHold(waterMoney.getNumberWater()) == 4){
+                        mount += CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_4*waterMoney.getNumberWater();
+                        paymentWaterResponse.setPriceBybac(CommonConst.POOR_HOUSE_HOLD_VALID.POOR_HOUSE_HOLD_VALID_BAC_1.toString());
+                    }
+                    mount = mount + mount*CommonConst.POOR_HOUSE_HOLD_VALID.THUE_VAT + mount*CommonConst.POOR_HOUSE_HOLD_VALID.THUE_MOI_TRUONG;
+                }
+
+                paymentWaterResponse.setSumPrice(mount);
+                listReSult.add(paymentWaterResponse);
+            }
+        }
+        catch (Exception ex){
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
+        }
+        return listReSult;
     }
 }

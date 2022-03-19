@@ -2,6 +2,9 @@ let datacitys = null;
 let datadistricts = null;
 let datawards = null;
 let dataSupplier = null;
+let checkPayment = 1;
+let checkListPayMent = false;
+let codeHouse = null;
 $( document ).ready(function() {
     console.log( "ready!" );
     initData();
@@ -308,6 +311,137 @@ function urlVnPaySubmit(){
         success: function(data) {
             console.log(data);
             window.open(data, "_bank");
+        },
+        type: 'GET'
+    });
+}
+
+
+function searchHouseHoldPayMent(){
+    if($("#searchcode").val().trim().length == 0){
+        showMessage.show(msgMune.titlej001, "Vui lòng nhập mã danh bộ", null, "Ok");
+        return;
+    }
+    else{
+        getHouseHold();
+    }
+
+
+    // show bảng nước
+
+    let tableHouseHold = null;
+    codeHouse = $("#searchcode").val().trim();
+
+    try {
+        if ($.fn.DataTable.isDataTable('#tableHouseHold')) {
+            $('#tableHouseHold').DataTable().clear().destroy();
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
+    document.getElementById("tableHouseHold").style.display = "block"
+    $('#tableHouseHold').empty();
+    tableHouseHold = $('#tableHouseHold').DataTable({
+        retrieve: true,
+        scrollX: false,
+        searching: false,
+        lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+        language: Const.DATA_TABLE_LANGUAGE,
+        processing: true,
+        ajax: {
+            url: urlGetListMemberWater + "?codeHouse=" + $("#searchcode").val().trim(),
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            error: function (e) {
+                setTimeout(() => {
+                    location.reload();
+                }, 5000)
+            },
+        },
+        ordering: false,
+        columns: [
+            {
+                title: 'Tháng cần thanh toán', data: 'dateWater', render: (val) => {
+                    // return new Date(val.dataBirth).toDateString();
+                    return val;
+                }
+            },
+            {
+                title: 'Số nước', data: 'numberWater', render: (val) => {
+                    if(val != "0"){
+                        checkPayment = 2;
+                        checkListPayMent = true;
+                        return val
+                    }
+                    else return "";
+                }
+            },
+            {
+                title: 'Đơn giá 10m3', data: 'priceBybac', render: (val) => {
+                    return val;
+                }
+            },
+            {
+                title: 'Thành tiền', data: 'sumPrice', render: (val) => {
+                    return val
+                }
+            },
+        ]
+    });
+}
+
+function getHouseHold(){
+    $.ajax({
+        url: urlSearchHouseHold + "?codeHouse=" + $("#searchcode").val(),
+        error: function() {
+            //$('#info').html('<p>An error has occurred</p>');
+            showMessage.show(msgMune.titlej001, "Lỗi tìm mã danh bộ", null, () => {$('#myDialog').modal('hide')});
+        },
+        // dataType: 'jsonp',
+        success: function(data) {
+            if(data.body != null){
+                $("#nameHouseHold")[0].innerText = "Khách hàng: " + data.body.houseHold.nameHouse
+                $("#addressHouseHold")[0].innerText = "Địa chỉ: " + data.body.houseHold.address
+                $("#nameSupllier")[0].innerText = "Thuộc nhà cung cấp: " +data.body.waterSupplier.nameSupplier
+            }
+        },
+        type: 'GET'
+    });
+}
+
+function submitPayment(){
+    if(checkPayment == 1){
+        showMessage.show(msgMune.titlej001, "Vui lòng hãy tra cứu thông tin số nước", null, "Ok");
+    }
+    else if(!checkListPayMent){
+        showMessage.show(msgMune.titlej001, "Tháng nước trước đó đã được thanh toán", null, "Ok");
+    }
+    else{
+        $("#modalPayment").modal("show");
+        $("#houseCodeEdit").val($("#searchcode").val());
+        $("#nameEdit").val($("#nameHouseHold")[0].innerText);
+        $("#addressHouse").val($("#addressHouseHold")[0].innerText);
+    }
+}
+
+function submitPayMentModal(){
+    if($("#bankcode option:selected").val() == ""){
+        $("#modalPayment").modal("hide");
+        showMessage.show(msgMune.titlej001, "Vui lòng chọn ngân hàng thanh toán", null, "Ok");
+        return;
+    }
+    $.ajax({
+        url: urlVnPay + "?codeHouse=" +codeHouse + "&&vnpOrderInfo=" + codeHouse + "&&bankcode=" + $("#bankcode option:selected").val(),
+        error: function() {
+            //$('#info').html('<p>An error has occurred</p>');
+            showMessage.show(msgMune.titlej001, "Insert Error Truck", null, "Ok");
+        },
+        // dataType: 'jsonp',
+        success: function(data) {
+            console.log(data);
+            window.open(data, "_self");
         },
         type: 'GET'
     });

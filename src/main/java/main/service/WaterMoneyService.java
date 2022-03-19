@@ -1,5 +1,6 @@
 package main.service;
 
+import main.beans.PaymentWaterResponse;
 import main.beans.WaterMoneyUpdateBeans;
 import main.entity.WaterMoney;
 
@@ -12,4 +13,5 @@ public interface WaterMoneyService {
 //    public void updateWaterMoney(Integer numberWater, String codeHouse);
     public WaterMoney findWaterMoneyByHouseHold(String codeHouse, Date date);
     public void updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans);
+    public List<PaymentWaterResponse> listwaterMoneyResponseByHouse(String codeHouse);
 }

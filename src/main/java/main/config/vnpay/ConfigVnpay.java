@@ -1,9 +1,11 @@
 package main.config.vnpay;
 
+import org.apache.commons.codec.cli.Digest;
 import org.apache.commons.codec.digest.HmacUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -88,33 +90,30 @@ public class ConfigVnpay {
 //        return bytesToHex(mac.doFinal(data.getBytes()));
 //    }
 
-    public static String hmacSHA512(final String key, final String data) {
-        return new HmacUtils(HMAC_SHA_512, key).hmacHex(data);
+    public static String hmacSHA512(final String key, final String data) throws NoSuchAlgorithmException, InvalidKeyException {
+        String hmacSHA512Algorithm = "HmacSHA512";
+        return ConfigVnpay.hmacWithJava(hmacSHA512Algorithm, data, key);
     }
 
-    //Util for VNPAY
-    public static String hashAllFields(Map fields) {
-        // create a list and sort it
-        List fieldNames = new ArrayList(fields.keySet());
-        Collections.sort(fieldNames);
-        // create a buffer for the md5 input and add the secure secret first
-        StringBuilder sb = new StringBuilder();
+    public static String hmacWithJava(String algorithm, String data, String key)
+            throws NoSuchAlgorithmException, InvalidKeyException {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), algorithm);
+        Mac mac = Mac.getInstance(algorithm);
+        mac.init(secretKeySpec);
+        return bytesToHex(mac.doFinal(data.getBytes()));
+    }
 
-        Iterator itr = fieldNames.iterator();
-        while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
-            String fieldValue = (String) fields.get(fieldName);
-            if ((fieldValue != null) && (fieldValue.length() > 0)) {
-                sb.append(fieldName);
-                sb.append("=");
-                sb.append(fieldValue);
-            }
-            if (itr.hasNext()) {
-                sb.append("&");
-            }
+    public static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (byte h : hash) {
+            String hex = Integer.toHexString(0xff & h);
+            if (hex.length() == 1)
+                hexString.append('0');
+            hexString.append(hex);
         }
-        return hmacSHA512(ConfigVnpay.vnp_HashSecret, sb.toString());
+        return hexString.toString();
     }
+
 
     public static String getIpAddress(HttpServletRequest request) {
         String ipAdress;

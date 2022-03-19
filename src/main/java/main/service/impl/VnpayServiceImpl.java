@@ -1,10 +1,14 @@
 package main.service.impl;
 
 import main.common.StringConst;
+import main.common.URLConst;
 import main.config.vnpay.ConfigVnpay;
+import main.entity.Bill;
 import main.entity.HouseHold;
 import main.entity.User;
+import main.repository.BillRespository;
 import main.repository.HouseHoldRepository;
+import main.repository.entityManager.UserEntityManager;
 import main.service.VnpayService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -26,11 +31,16 @@ public class VnpayServiceImpl implements VnpayService {
     @Autowired
     HouseHoldRepository houseHoldRepository;
 
-    @Override
-    public String paymentWater(String codeHouse, String vnpOrderInfo, String bankcode,  String mountBill) {
-        try {
-            HouseHold houseHold = houseHoldRepository.findByCodeHouse(codeHouse);
 
+    @Autowired
+    BillRespository billRespository;
+
+    @Autowired
+    UserEntityManager userEntityManager;
+
+    @Override
+    public String paymentWater(String codeHouse, String vnpOrderInfo, String bankcode,  String mountBill, String return_url) {
+        try {
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";
             String vnp_OrderInfo = vnpOrderInfo;
@@ -39,22 +49,21 @@ public class VnpayServiceImpl implements VnpayService {
             String vnp_IpAddr = ConfigVnpay.ip_config;
             String vnp_TmnCode = ConfigVnpay.vnp_TmnCode;
 
-            int amount = Integer.parseInt(mountBill);
             Map<String, String> vnp_Params = new HashMap<>();
             vnp_Params.put("vnp_Version", vnp_Version);
             vnp_Params.put("vnp_Command", vnp_Command);
             vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
-            vnp_Params.put("vnp_Amount", String.valueOf(amount));
+            vnp_Params.put("vnp_Amount", String.valueOf((Integer.valueOf(mountBill)*100)));
             vnp_Params.put("vnp_CurrCode", "VND");
             String bank_code = bankcode;
             if (bank_code != null && !bank_code.isEmpty()) {
                 vnp_Params.put("vnp_BankCode", bank_code);
             }
             vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-            vnp_Params.put("vnp_OrderInfo", vnp_OrderInfo);
+            vnp_Params.put("vnp_OrderInfo", codeHouse);
             vnp_Params.put("vnp_OrderType", orderType);
             vnp_Params.put("vnp_Locale", "vn");
-            vnp_Params.put("vnp_ReturnUrl", ConfigVnpay.vnp_Returnurl);
+            vnp_Params.put("vnp_ReturnUrl", return_url);
             vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
             Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
 
@@ -99,5 +108,16 @@ public class VnpayServiceImpl implements VnpayService {
             throw new RuntimeException(ex);
         }
 
+    }
+
+    @Override
+    public void savePayMent(Bill bill) {
+        try {
+            billRespository.saveAndFlush(bill);
+        }
+        catch (Exception ex){
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
+        }
     }
 }
