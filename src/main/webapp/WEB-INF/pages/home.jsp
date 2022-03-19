@@ -92,7 +92,7 @@
                     <div class="col-md-6 col-xs-12 form-group">
                         <div style="display: flex; justify-content: center;">
                             <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>
-                            <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="searchhousehold()" disabled>Tra cứu</button>
+                            <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="customerSearchBill()" disabled>Tra cứu</button>
                         </div>
                     </div>
                 </div>
@@ -101,6 +101,74 @@
                     <table class="table table-bordered table-striped" style="width: 100%!important;position: relative"
                            id="tableInformationBill">
                     </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="showResult" class="col-xs-12 none-padding">
+        <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
+            <div class="col-xs-12 none-padding form-customer">
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tên chủ hộ</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <input type="text" class="form-select form-select-sm edit-input" id="resultName"
+                                   style="background-image: none;" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Địa chỉ</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                                <input type="text" class="form-select form-select-sm edit-input" id="resultAddress"
+                                       style="background-image: none;" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tên nhà cung cấp</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <input type="text" class="form-select form-select-sm edit-input" id="resultNameSupplier"
+                                   style="background-image: none;" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Thời gian thanh toán</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                                <input type="text" class="form-select form-select-sm edit-input" id="resultTime"
+                                       style="background-image: none;" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 none-padding">
+                    <div class="col-md-6 col-xs-12 form-group form-left">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Số nước dùng trong tháng</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                            <input type="text" class="form-select form-select-sm edit-input" id="resultNumberWater"
+                                   style="background-image: none;" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <div style="display: flex; justify-content: center;">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tổng tiền</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                                <input type="text" class="form-select form-select-sm edit-input" id="resultTotal"
+                                       style="background-image: none;" disabled>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,10 +186,11 @@
     let urlVnPay = rootPath + '<%=URLConst.User.USER_PAY_MENT%>'
     let urlResponse = rootPath + '<%=URLConst.User.VPN_RESPONSE_PAY_MENT%>'
     let urlUpdateWaterNumber = rootPath + '<%=URLConst.Water.UPDATE_WATER_MONEY%>'
+    let urlSearchBill = rootPath + '<%=URLConst.User.USER_SEARCH_BILL%>'
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common/CustomerSearchBill.js"></script>
 <script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
 <jsp:include page="common/footer.jsp"/>
 

@@ -1,6 +1,7 @@
 package main.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bill")
@@ -9,6 +10,7 @@ public class Bill {
     private Integer idStaff;
     private Integer idWaterMoney;
     private Float sumMoney;
+    private LocalDateTime createAt;
 
     public Bill() {
     }
@@ -59,5 +61,14 @@ public class Bill {
 
     public void setSumMoney(Float sumMoney) {
         this.sumMoney = sumMoney;
+    }
+
+    @Column(name = "create_at")
+    public LocalDateTime getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
     }
 }

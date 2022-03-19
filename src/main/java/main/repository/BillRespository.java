@@ -11,4 +11,6 @@ public interface BillRespository extends JpaRepository<Bill, Integer>, QueryByEx
     @Modifying
     @Query(value = "INSERT INTO bill (id_staff, id_water_money, sum_money) VALUES (?, ?, ?);", nativeQuery = true)
     void saveWaterMoney(Integer idStaff, Integer idWaterMoney, Float sumMoney);
+
+    Bill getBillByIdWaterMoney(Integer id);
 }

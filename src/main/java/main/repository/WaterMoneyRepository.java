@@ -29,6 +29,5 @@ public interface WaterMoneyRepository extends JpaRepository<WaterMoney, Integer>
             "AND date_water = CURRENT_DATE", nativeQuery = true)
     void deleteDateWaterNow(String codeHouse);
 
-
     List<WaterMoney> getWaterMoneyByCodeHouse(String codehouse);
 }

@@ -38,6 +38,8 @@ public class URLConst {
 
         public static final String USER_SEARCH_HOUSEHOLD = URL_USER + "/search";
 
+        public static final String USER_SEARCH_BILL = URL_USER + "/searchBill";
+
         public static final String USER_PAY_MENT = URL_USER + "/payment";
 
         public static final String VPN_RESPONSE_PAY_MENT = "http://localhost:8080/Water_war" + URL_USER + "/responsePayment";

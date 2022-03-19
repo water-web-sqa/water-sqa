@@ -1,18 +1,18 @@
 package main.controller;
 
-import main.beans.HouseHoldBeans;
-import main.beans.HouseHoldWaterBeans;
+import main.beans.*;
 import main.common.URLConst;
+import main.entity.Bill;
 import main.entity.HouseHold;
-import main.service.HouseHoldService;
-import main.service.UserService;
-import main.service.WaterMoneyService;
-import main.service.WatterService;
+import main.entity.WaterMoney;
+import main.entity.WaterSupplier;
+import main.service.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,13 +28,13 @@ public class UserController {
     private static final Logger logger = LogManager.getLogger(WaterController.class);
 
     @Autowired
-    UserService userService;
-    @Autowired
     HouseHoldService houseHoldService;
     @Autowired
     WatterService watterService;
     @Autowired
     WaterMoneyService waterMoneyService;
+    @Autowired
+    BillService billService;
 
     @PostMapping(value = URLConst.User.USER_SEARCH_HOUSEHOLD, consumes = "application/json", produces = "application/json")
     @ResponseBody
@@ -61,6 +61,30 @@ public class UserController {
             result.put("data", list);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+        }
+        return result;
+    }
+
+    @PostMapping(value = URLConst.User.USER_SEARCH_BILL, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public WrapperResponse<CustomerSearchBillResponse> findBillByUser(@RequestBody CustomerSearchBeans customerSearchBeans) {
+        WrapperResponse<CustomerSearchBillResponse> result = new WrapperResponse<>();
+        try {
+            HouseHold houseHold = houseHoldService.findByCodeHouse(customerSearchBeans.getCodeHouse());
+            WaterMoney waterMoney = waterMoneyService.findWaterMoneyByHouseHold(customerSearchBeans.getCodeHouse(), customerSearchBeans.getDate());
+            Bill bill;
+            if (waterMoney == null) {
+                bill = null;
+            } else {
+                bill = billService.getBillByWaterNumber(waterMoney.getId());
+            }
+            WaterSupplier supplier = watterService.findById(houseHold.getIdSupplier());
+            result.setStatus(200);
+            result.setMsg("Success");
+            result.setBody(new CustomerSearchBillResponse(houseHold, waterMoney, bill, supplier.getNameSupplier()));
+        } catch (Exception e) {
+            result.setStatus(400);
+            result.setMsg("Error");
         }
         return result;
     }

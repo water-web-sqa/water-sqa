@@ -31,7 +31,6 @@ public class VnpayServiceImpl implements VnpayService {
     @Autowired
     HouseHoldRepository houseHoldRepository;
 
-
     @Autowired
     BillRespository billRespository;
 
