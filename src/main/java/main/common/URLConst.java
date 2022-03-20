@@ -29,6 +29,9 @@ public class URLConst {
 
         public static final String GET_REQUEST_RESIGTER_WATER = WATER_HOME_2 + "/registerWater";
 
+        public static final String SET_STATUS_REQUEST = GET_REQUEST_RESIGTER_WATER + "/updateStatus";
+
+        public static final String UPDATE_CUSTOMER_RESIGTER = GET_REQUEST_RESIGTER_WATER + "/updateStatus";
     }
 
     public class User {

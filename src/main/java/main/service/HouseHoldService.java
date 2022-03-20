@@ -10,4 +10,5 @@ public interface HouseHoldService {
     List<HouseHold> findAllHousehouseByAddress(HouseHoldBeans houseHoldBeans);
     void saveHouseHold(HouseHold houseHold);
     HouseHold findByCodeHouse(String codeHouse);
+    String lastId();
 }

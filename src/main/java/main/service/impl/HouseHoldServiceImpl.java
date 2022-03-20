@@ -35,4 +35,9 @@ public class HouseHoldServiceImpl implements HouseHoldService {
     public HouseHold findByCodeHouse(String codeHouse) {
         return houseHoldRepository.findByCodeHouse(codeHouse);
     }
+
+    @Override
+    public String lastId() {
+        return houseHoldRepository.lastId().getCodeHouse();
+    }
 }

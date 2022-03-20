@@ -16,4 +16,9 @@ public interface HouseHoldRepository extends JpaRepository<HouseHold, String> {
     List<HouseHold> findByAddressAndName(String city, String district, String ward, String name);
 
     HouseHold findByCodeHouse(String codeHouse);
+
+    @Query(value = "SELECT * FROM household " +
+            "ORDER BY code_house DESC " +
+            "LIMIT 1", nativeQuery = true)
+    HouseHold lastId();
 }

@@ -15,6 +15,7 @@ public class CustomerRegister {
     private String email;
     private String phone;
     private int idSupplier;
+    private String typeHouse;
     private int status;
 
     public CustomerRegister() {
@@ -29,6 +30,18 @@ public class CustomerRegister {
         this.email = email;
         this.phone = phone;
         this.idSupplier = idSupplier;
+        this.status = status;
+    }
+
+    public CustomerRegister(Integer id, String nameHouse, String address, Date dataBirth, String email, String phone, int idSupplier, String typeHouse, int status) {
+        this.id = id;
+        this.nameHouse = nameHouse;
+        this.address = address;
+        this.dataBirth = dataBirth;
+        this.email = email;
+        this.phone = phone;
+        this.idSupplier = idSupplier;
+        this.typeHouse = typeHouse;
         this.status = status;
     }
 
@@ -103,7 +116,6 @@ public class CustomerRegister {
         this.idSupplier = idSupplier;
     }
 
-
     @Basic
     @Column(name = "status")
     public int getStatus() {
@@ -112,5 +124,15 @@ public class CustomerRegister {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Basic
+    @Column(name = "type_house")
+    public String getTypeHouse() {
+        return typeHouse;
+    }
+
+    public void setTypeHouse(String typeHouse) {
+        this.typeHouse = typeHouse;
     }
 }

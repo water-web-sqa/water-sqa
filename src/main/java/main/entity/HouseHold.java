@@ -26,6 +26,15 @@ public class HouseHold {
         this.idSupplier = idSupplier;
     }
 
+    public HouseHold(String codeHouse, String nameHouse, String address, Date dataBirth, int idSupplier, String typeHouse) {
+        this.codeHouse = codeHouse;
+        this.nameHouse = nameHouse;
+        this.address = address;
+        this.dataBirth = dataBirth;
+        this.idSupplier = idSupplier;
+        this.typeHouse = typeHouse;
+    }
+
     @Id
     @Column(name = "code_house")
     public String getCodeHouse() {

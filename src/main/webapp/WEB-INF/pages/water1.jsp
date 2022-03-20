@@ -22,12 +22,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div id="informationEdit" class="row">
+                    <input type="text" id="idRes" hidden>
+                    <input type="text" id="statusHidden" hidden>
+
                     <div class="col-lg-12" style="margin-top: 10px">
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelNameEdit">Tên khách hàng<span style="color: red">*</span></p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="text" class="" id="nameEdit" maxlength="10" style="text-align: right;
+                                <input type="text" class="" id="nameEdit" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -38,7 +41,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelAddressEdit" >Địa chỉ</p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="text" class="" id="address"  maxlength="20" style="text-align: right;
+                                <input type="text" class="" id="address" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -49,7 +52,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelDateBirth" >Ngày sinh</p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="date" class="" id="datebirth"  maxlength="20" style="text-align: right;
+                                <input type="date" class="" id="datebirth" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -60,7 +63,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelEmailEdit">Email<span style="color: red">*</span></p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="email" class="" id="emailEdit" maxlength="10" style="text-align: right;
+                                <input type="email" class="" id="emailEdit" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -71,7 +74,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelphoneEdit">Sđt<span style="color: red">*</span></p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="number" class="" id="phoneEdit" maxlength="10" style="text-align: right;
+                                <input type="number" class="" id="phoneEdit" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -88,15 +91,39 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-12" style="margin-top: 10px">
+                        <div class="row">
+                            <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="typeHouse">Loại<span style="color: red">*</span></p></div>
+                            <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
+                                <select id="typeHouseEdit" style="text-align: right;border: none;outline: none;width: 93%;">
+                                    <option>Hộ gia đình</option>
+                                    <option>Hộ nghèo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="changeStatus">
+                    <div style="display: flex; justify-content: center">
+                        <select id="selectStatus">
+                            <option>Đang liên hệ</option>
+                            <option>Không chấp nhận</option>
+                            <option>Chấp nhận</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer" style="justify-content: space-around;border: none">
-                <button type="button" class="btn btn-primary" id="buttonOk" onclick="saveHoldHouse()" style="background-color: #34CEFF;width: 120px; border: none">Ok</button>
+                <button type="button" class="btn btn-primary" id="buttonOkStatus" onclick="sendStatus()" style="background-color: #34CEFF;width: 120px; border: none; display: none;">Ok</button>
+                <button type="button" class="btn btn-primary" id="buttonOk" onclick="saveResigterWater()" style="background-color: #34CEFF;width: 120px; border: none">Ok</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonClose" onclick="$('#modalEdit').modal('hide')" style="background-color: #F9E4BD; color: #333;width: 120px; border: none"> Hủy</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <script src="${pageContext.request.contextPath}/resources/js/common/Const.js"></script>
 <script>
@@ -104,6 +131,8 @@
     let urlGetWaterSupplier = rootPath + '<%=URLConst.Water.GET_WATER_SUPPLIER%>'
     let urlRequestResigterWater = rootPath + '<%=URLConst.Water.GET_REQUEST_RESIGTER_WATER%>'
     let urlGetResourceLocation = rootPath + '/resources/data/location.json'
+    let urlUpdateStatus = rootPath + '<%=URLConst.Water.SET_STATUS_REQUEST%>'
+    let urlUpdateCustomerRequest = rootPath + '<%=URLConst.Water.UPDATE_CUSTOMER_RESIGTER%>'
 </script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="${pageContext.request.contextPath}/resources/js/common/ResigterWaterRequest.js"></script>

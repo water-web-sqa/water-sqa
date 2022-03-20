@@ -23,4 +23,36 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService {
     public List<CustomerRegister> allCustomerRegister() {
         return customerRegisterRepository.findAllByStatusNotLike(2);
     }
+
+    @Override
+    public void deleteCustomerRegister(Integer id) {
+        try {
+            customerRegisterRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    @Override
+    public void updateStatus(Integer status, Integer id) {
+        try {
+            customerRegisterRepository.updateStatus(status, id);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    @Override
+    public CustomerRegister findById(Integer id) {
+        return customerRegisterRepository.findById(id).get();
+    }
+
+    @Override
+    public void save(CustomerRegister customerRegister) {
+        try {
+            customerRegisterRepository.save(customerRegister);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
 }
