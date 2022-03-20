@@ -9,11 +9,11 @@ $( document ).ready(function() {
     console.log( "ready!" );
     initData();
     searchhousehold(true);
-    getWaterSupplier();
+    getWaterSupplier1();
 });
 
 
-function getWaterSupplier(){
+function getWaterSupplier1(){
     $.ajax({
         url: urlGetWaterSupplier,
         error: function() {
@@ -34,6 +34,39 @@ function getWaterSupplier(){
 
         },
         type: 'GET'
+    });
+}
+
+function saveResigterWater() {
+    let customerRegister = {
+        id: $("#idRes").val(),
+        nameHouse: $("#name").val(),
+        address: $("#address").val() + ", " + $("#ward option:selected")[0].innerText + ", " +
+            $("#district option:selected")[0].innerText + ", " + $("#city option:selected")[0].innerText,
+        dataBirth: $("#dob").val(),
+        email: $("#mail").val(),
+        phone: $("#phone").val(),
+        idSupplier: $("#supplier option:selected").val(),
+        typeHouse: $("#typehousehold option:selected").val(),
+        status: 0
+    }
+
+    $.ajax({
+        type: "POST",
+        url: urlAddCustomerRegister,
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            if (data.status == 200) {
+
+                showMessage.show(msgMune.titlej001, "Đăng ký thành công");
+                location.reload();
+            } else {
+
+                alert("Cannot add to list !");
+            }
+        },
+        data: JSON.stringify(customerRegister)
     });
 }
 

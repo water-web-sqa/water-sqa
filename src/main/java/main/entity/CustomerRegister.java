@@ -22,18 +22,7 @@ public class CustomerRegister {
     }
 
     public CustomerRegister(Integer id, String nameHouse, String address,
-                            Date dataBirth, String email, String phone, int idSupplier, int status) {
-        this.id = id;
-        this.nameHouse = nameHouse;
-        this.address = address;
-        this.dataBirth = dataBirth;
-        this.email = email;
-        this.phone = phone;
-        this.idSupplier = idSupplier;
-        this.status = status;
-    }
-
-    public CustomerRegister(Integer id, String nameHouse, String address, Date dataBirth, String email, String phone, int idSupplier, String typeHouse, int status) {
+                            Date dataBirth, String email, String phone, int idSupplier, String typeHouse, int status) {
         this.id = id;
         this.nameHouse = nameHouse;
         this.address = address;

@@ -59,6 +59,8 @@ public class URLConst {
 
         public static final String GET_LIST_MEMBER_WATER = URL_USER + "/getMemberWater";
 
+        public static final String ADD_CUSTOMER_REGISTER = USER_REGISTER_USE_WATER+ "/addCustomerRegister";
+
     }
 
 }

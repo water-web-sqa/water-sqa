@@ -85,7 +85,8 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="" style="margin-bottom: 0 !important;margin-top: 8px">Đơn vị <span style="color: red">*</span></p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <select class="form-select form-select-lg mb-3" id="supplier" aria-label=".form-select-lg example" style="border: none; outline: none; text-align: right">
+                                <select class="form-select form-select-lg mb-3" id="supplier"
+                                        aria-label=".form-select-lg example" style="border: none; outline: none; text-align: right">
                                 </select>
                             </div>
                         </div>

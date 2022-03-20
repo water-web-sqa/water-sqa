@@ -2,6 +2,7 @@ package main.service;
 
 import main.entity.CustomerRegister;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CustomerRegisterService {
