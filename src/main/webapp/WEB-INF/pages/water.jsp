@@ -155,10 +155,10 @@
                 <div class="row">
                     <div class="col-lg-12" style="margin-bottom: 20px;margin-top: 20px">
                         <div class="row">
-                            <div class="col-lg-3"  style="border-bottom: 1px solid #ced4da;"><p id="labelUserNameEdit">Mã danh bộ  <span style="color: red">*</span></p></div>
+                            <div class="col-lg-3"  style="border-bottom: 1px solid #ced4da;"><p id="labelUserNameEdit">Mã danh bộ </p></div>
 
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="text" class="" id="houseCodeEdit" maxlength="5" style="text-align: right;border: none;
+                                <input type="text" class="" id="houseCodeEdit" style="text-align: right;border: none;
                             margin-bottom: 20px;width: 100%;outline: none">
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelNameEdit">Tên chủ hộ <span style="color: red">*</span></p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="text" class="" id="nameEdit" maxlength="10" style="text-align: right;
+                                <input type="text" class="" id="nameEdit" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -179,7 +179,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="labelDateBirth" >Ngày sinh</p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="date" class="" id="datebirth"  maxlength="20" style="text-align: right;
+                                <input type="date" class="" id="datebirth"  style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
@@ -190,7 +190,7 @@
                         <div class="row">
                             <div class="col-lg-3" style="border-bottom: 1px solid #ced4da;"><p id="" >Địa chỉ</p></div>
                             <div class="col-lg-9" style="border-bottom: 1px solid #ced4da;">
-                                <input type="text" class="" id="address"  maxlength="20" style="text-align: right;
+                                <input type="text" class="" id="address" style="text-align: right;
                                     border: none;outline: none;width: 93%;
                                    ">
                             </div>
