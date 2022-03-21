@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/login").permitAll();
 		http.authorizeRequests().antMatchers("/payoo/**").permitAll();
 		http.authorizeRequests().antMatchers("/error/**").permitAll();
+		http.authorizeRequests().antMatchers("/water/getWaterSupplier").permitAll();
 		//http.authorizeRequests().antMatchers("/api/**").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
 
