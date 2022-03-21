@@ -43,6 +43,16 @@
         bottom: -150px !important;
         right: 0 !important;
     }
+
+    @media (max-width: 425px) {
+        .flex-column-mb {
+            display: flex;
+            flex-direction: column;
+        }
+        .width100 {
+            width: 100%;
+        }
+    }
 </style>
 <%--<div class="col-12" style="min-height: 70%; background-color: #f9f9ff">--%>
 <%--    --%>
@@ -62,18 +72,18 @@
     <div class="col-xs-12 none-padding">
         <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
             <div class="col-xs-12 none-padding form-customer">
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Mã danh bộ</label>
+                <div class="col-xs-12 none-padding flex-column-mb">
+                    <div class="col-md-6 col-xs-12 form-group form-left" style="display: flex; width: 100%; padding: 0 10px">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding" style="white-space: nowrap">Mã danh bộ</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="text" class="form-select form-select-sm edit-input" id="searchcode"
                                    style="background-image: none;" placeholder="Mã danh bộ">
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
-                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Thời gian</label>
+                    <div class="col-md-6 col-xs-12 form-group" style="width: 100%; padding: 0 10px">
+                        <div style="display: flex; justify-content: center">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding" style="white-space: nowrap">Thời gian</label>
                             <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                                 <input type="month" class="form-select form-select-sm edit-input" id="chooseTime"
                                        style="background-image: none;">
@@ -82,15 +92,15 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 none-padding" style="margin-top: 30px;">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
+                <div class="col-xs-12 none-padding flex-column-mb" style="margin-top: 30px;">
+                    <div class="col-md-6 col-xs-12 form-group form-left" style="width: 100%">
                         <div class="g-recaptcha" style="display: flex; justify-content: space-around;" data-callback="recaptchaCallback"
                              data-sitekey="6LcCsuUeAAAAAMsaHa2KPNI-kyBcEdn2DfqMDg8S">
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
+                    <div class="col-md-6 col-xs-12 form-group" style="width: 100%">
+                        <div style="display: flex; justify-content: center">
                             <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>
                             <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="customerSearchBill()" disabled>Tra cứu</button>
                         </div>
@@ -111,8 +121,8 @@
     <div id="showResult" class="col-xs-12 none-padding">
         <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
             <div class="col-xs-12 none-padding form-customer">
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tên chủ hộ</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="text" class="form-select form-select-sm edit-input" id="resultName"
@@ -120,8 +130,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <div style="display: flex; justify-content: center; width: 100%">
                             <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Địa chỉ</label>
                             <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                                 <input type="text" class="form-select form-select-sm edit-input" id="resultAddress"
@@ -131,8 +141,8 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tên nhà cung cấp</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="text" class="form-select form-select-sm edit-input" id="resultNameSupplier"
@@ -140,8 +150,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <div style="display: flex; justify-content: center;" class="width100">
                             <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Thời gian thanh toán</label>
                             <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                                 <input type="text" class="form-select form-select-sm edit-input" id="resultTime"
@@ -151,8 +161,8 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Số nước dùng trong tháng</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="text" class="form-select form-select-sm edit-input" id="resultNumberWater"
@@ -160,8 +170,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <div style="display: flex; justify-content: center;" class="width100">
                             <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tổng tiền</label>
                             <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                                 <input type="text" class="form-select form-select-sm edit-input" id="resultTotal"

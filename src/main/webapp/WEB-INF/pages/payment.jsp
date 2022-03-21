@@ -66,6 +66,18 @@
     #tableHouseHold_paginate{
         display: none;
     }
+    @media (max-width: 425px) {
+        .flex-column-mb {
+            display: flex;
+            flex-direction: column;
+        }
+        .width100 {
+            width: 100%;
+        }
+        .display_block {
+            display: block;
+        }
+    }
 </style>
 <%--<div class="col-12" style="min-height: 70%; background-color: #f9f9ff">--%>
 <%--    --%>
@@ -86,7 +98,7 @@
         <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
             <div class="col-xs-12 none-padding form-customer">
                 <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left" style="display: flex; align-items: center; justify-content: center">
+                    <div class="col-xs-12 col-md-6 form-group form-left width100" style="display: flex; align-items: center; justify-content: center">
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding" style="text-align: left">Mã danh bộ</label>
                             <input type="text" class="form-select form-select-sm edit-input" id="searchcode"
@@ -106,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
+                    <div class="col-xs-12 col-md-6 form-group width100">
                         <div style="display: flex; justify-content: center;">
                             <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                                 <div class="bill-tooltip" onclick="zoom(1)" style="height: 292px;
