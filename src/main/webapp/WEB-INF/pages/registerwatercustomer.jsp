@@ -143,7 +143,7 @@
                         <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Email</label>
                         <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
                             <input type="email" class="form-select form-select-sm edit-input" id="mail"
-                                   style="background-image: none;" placeholder="Email">
+                                   style="background-image: none;" placeholder="Email" required>
                         </div>
                     </div>
 
@@ -196,10 +196,12 @@
 <%--                </p>--%>
 <%--            </div>--%>
 
-            <div .center>
+            <div>
                 <div class="col-md-6 col-xs-12 form-group">
                     <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit" onclick="saveResigterWater()">Gửi</button>
+                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit"
+                                onclick="if(ValidateName() && ValidateEmail()
+                                && ValidatePhone()) saveResigterWater();">Gửi</button>
                         <%--                            <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>--%>
                     </div>
                 </div>
@@ -225,7 +227,7 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="${pageContext.request.contextPath}/resources/js/common/SelectLocation.js"></script>
 <script src="${pageContext.request.contextPath}/resources/data/location.json"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/common/ValidateForm.js"></script>
 <jsp:include page="common/footer.jsp"/>
 
 
