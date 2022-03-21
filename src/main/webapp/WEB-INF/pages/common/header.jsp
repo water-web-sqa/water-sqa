@@ -89,12 +89,35 @@
         display: block;
         background-color: #34CEFF !important;
         border: 0.5px solid #41D3FB;
+        margin-right: -12px;
+        margin-left: 12px;
+        margin-top: 10px;
     }
 
     .navbar-brand {
         color: #ffffff !important;
         font-size: 18px;
         font-family: sans-serif;
+    }
+    .hover_txt {
+        position: relative;
+    }
+
+    .hover_txt:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #FFF;
+        visibility: hidden;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .hover_txt:hover:before {
+        visibility: visible;
+        width: 100%;
     }
 
     .w-title {
@@ -222,7 +245,9 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div style="display: flex; justify-content: space-between; align-items: center">
-        <a class="navbar-brand text-center" href="#"> <i class="fas fa-sync" style="padding: 8px"></i> Công ty THHH
+        <a class="navbar-brand text-center" href="#">
+            <img src="<c:url value = "/resources/image/logo_water.png" />" alt="Image" width="50px" style="margin-top: -12px"/>
+            Công ty THHH
         </a>
         <c:set var="waterPageCode" scope="session" value="<%=CommonConst.COMMON_PAGE.WATER%>"/>
         <c:set var="waterPageCode1" scope="session" value="<%=CommonConst.COMMON_PAGE.WATER1%>"/>
@@ -244,12 +269,12 @@
 
         <div style="width: 300px;display: flex;justify-content: space-evenly;">
             <a href="javascript:void(0)" target=""
-               class="header_logout show_change_password textActive" style="text-align: right;">
+               class="header_logout show_change_password textActive hover_txt" style="text-align: right;">
                Admin  <i class="fa fa-user"></i>
             </a>
 
             <a href="<c:url value= "/logout"/>" target=""
-               class="header_logout textActive" style="text-align: right;"> Đăng xuất
+               class="header_logout textActive hover_txt" style="text-align: right;"> Đăng xuất
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>

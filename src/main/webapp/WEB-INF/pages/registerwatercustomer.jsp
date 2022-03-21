@@ -50,6 +50,22 @@
         border: 3px solid green;
         padding: 10px;
     }
+
+    @media (max-width: 425px) {
+        .flex-column-mb {
+            display: flex;
+            flex-direction: column;
+        }
+        .width100 {
+            width: 100%;
+        }
+        .display_block {
+            display: block;
+        }
+        .btn_send {
+            margin: 0 3px 0 0;
+        }
+    }
 </style>
 <%--<div class="col-12" style="min-height: 70%; background-color: #f9f9ff">--%>
 <%--    --%>
@@ -70,10 +86,10 @@
         <div class="col-xs-12 none-padding tracuu tracuu-hogd tracuu-maso">
             <div class="col-xs-12 none-padding form-customer">
 
-                <div class="col-xs-12 none-padding">
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Tỉnh/TP</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Tỉnh/TP</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <select class="form-select form-select-sm edit-input enable-click" id="city"
                                     aria-label=".form-select-sm" onchange="onchangeCity(this)">
                                 <option id="cityDefault" value="" selected>-Chọn tỉnh-</option>
@@ -81,9 +97,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Quận/Huyện</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Quận/Huyện</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <select class="form-select form-select-sm edit-input enable-click" id="district"
                                     aria-label=".form-select-sm" onchange="onchangeDistrict(this)">
                                 <option id="districtDefault" value="" selected>-Chọn quận huyện-</option>
@@ -92,11 +108,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 none-padding">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
 
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Phường/Xã</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Phường/Xã</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <select class="form-select form-select-sm edit-input enable-click" id="ward"
                                     aria-label=".form-select-sm">
                                 <option id="wardDefault" value="" selected>- Chọn phường xã -</option>
@@ -104,9 +120,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Địa chỉ</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Địa chỉ</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <input type="text" class="form-select form-select-sm edit-input" id="address"
                                    style="background-image: none;" placeholder="Địa chỉ cụ thể(Số nhà, thôn-dội...)">
                         </div>
@@ -115,20 +131,20 @@
 
                 </div>
 
-                <div class="col-xs-12 none-padding">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
 
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Họ tên</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Họ tên</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <input type="text" class="form-select form-select-sm edit-input" id="name"
                                    style="background-image: none;" placeholder="Họ và tên">
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
-                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Ngày sinh</label>
-                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <div style="display: flex; justify-content: center;" class="width100 flex-column-mb">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Ngày sinh</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                                 <input type="date" class="form-select form-select-sm edit-input" id="dob"
                                        style="background-image: none;" placeholder="Ngày sinh">
                             </div>
@@ -137,20 +153,20 @@
 
                 </div>
 
-                <div class="col-xs-12 none-padding">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
 
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Email</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Email</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <input type="email" class="form-select form-select-sm edit-input" id="mail"
-                                   style="background-image: none;" placeholder="Email" required>
+                                   style="background-image: none;" placeholder="Email">
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <div style="display: flex; justify-content: center;">
-                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Số điện thoại</label>
-                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <div style="display: flex; justify-content: center;" class="width100 flex-column-mb">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Số điện thoại</label>
+                            <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                                 <input type="tel" class="form-select form-select-sm edit-input" id="phone"
                                        style="background-image: none" placeholder="Số điện thoại" pattern="[0-9]{10}">
                             </div>
@@ -159,11 +175,11 @@
 
                 </div>
 
-                <div class="col-xs-12 none-padding">
+                <div class="col-xs-12 none-padding flex-column-mb width100">
 
-                    <div class="col-md-6 col-xs-12 form-group form-left">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Loại hộ gia đình</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group form-left width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Loại hộ gia đình</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <select class="form-select form-select-sm edit-input enable-click" id="typehousehold"
                                     aria-label=".form-select-sm">- Chọn loại hộ gia đình
                                 <option id="housedefaul" selected>- Chọn loại hộ gia đình -</option>
@@ -174,9 +190,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xs-12 form-group">
-                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding">Nhà cung cấp nước</label>
-                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
+                    <div class="col-md-6 col-xs-12 form-group width100">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12 none-padding display_block">Nhà cung cấp nước</label>
+                        <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
                             <select class="form-select form-select-sm edit-input enable-click" id="supplier"
                                     aria-label=".form-select-sm">
                                 <option id="" value="" selected>- Chọn nhà cung cấp nước -</option>
@@ -196,12 +212,11 @@
 <%--                </p>--%>
 <%--            </div>--%>
 
-            <div>
-                <div class="col-md-6 col-xs-12 form-group">
-                    <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile">
-                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit"
-                                onclick="if(ValidateName() && ValidateEmail()
-                                && ValidatePhone()) saveResigterWater();">Gửi</button>
+            <div .center>
+                <div class="col-md-6 col-xs-12 form-group width100">
+                    <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
+                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit width100 btn_send"
+                                onclick="if(ValidateName() && ValidateEmail() && ValidatePhone()) saveResigterWater();">Gửi</button>
                         <%--                            <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>--%>
                     </div>
                 </div>

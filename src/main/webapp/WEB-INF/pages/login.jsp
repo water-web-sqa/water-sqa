@@ -373,7 +373,6 @@
             overflow: hidden;
             margin: 0 auto;
         }
-
         .login100-form-bgbtn {
             position: absolute;
             z-index: -1;
@@ -410,6 +409,10 @@
             padding: 0 20px;
             width: 100%;
             height: 50px;
+            transition: all 0.2s;
+        }
+        .login100-form-btn:hover {
+            background: #adb5bd;
         }
 
         .wrap-login100-form-btn:hover .login100-form-bgbtn {
@@ -535,7 +538,7 @@
                             </div>
 
                             <div class="container-login100-form-btn">
-                                <div class="wrap-login100-form-btn" style="height: 80px !important;">
+                                <div class="wrap-login100-form-btn">
                                     <input type="submit" class="login100-form-btn" style="color: #333; !important;" value="Đăng nhập">
                                 </div>
                             </div>

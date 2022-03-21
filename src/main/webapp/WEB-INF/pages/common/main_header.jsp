@@ -39,7 +39,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5" style="display: flex; align-items: center; padding: 10px; margin-bottom: 0 !important;">
                     <a href="https://payoo.vn/">
-                        <img alt="Payoo - Thanh toán hóa đơn online" height="55px" src="<c:url value = "/resources/image/img.png" />">
+                        <img alt="Payoo - Thanh toán hóa đơn online" height="55px" src="<c:url value = "/resources/image/logo_water.png" />">
                     </a>
                 </div>
 
@@ -51,13 +51,13 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <div class="collapse navbar-collapse" id="ftco-nav">
+                <div class="collapse navbar-collapse" id="ftco-nav" style="display: flex">
 
                     <c:set var="waterPageCode"  scope="session" value="<%=CommonConst.COMMON_USER_PAGE.WATER%>"/>
                     <c:set var="waterPageCode1" scope="session" value="<%=CommonConst.COMMON_USER_PAGE.WATER1%>"/>
                     <c:set var="waterPageCode2" scope="session" value="<%=CommonConst.COMMON_USER_PAGE.WATER2%>"/>
 
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" style="width: 100%">
                         <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER%>" class="nav-link">Trang chủ</a></li>
                         <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.USER_REGISTER_USE_WATER%>" class="nav-link">Đăng ký sử dụng nước</a></li>
                         <li class="nav-item ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER_2%>" class="nav-link">Thanh toán</a></li>
