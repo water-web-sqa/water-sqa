@@ -244,7 +244,6 @@ function saveHoldHouse(){
         idSupplier: $("#supplier option:selected").val(),
     }
 
-
     $.ajax({
         type: "POST",
         url: urlEditHouseHold,
@@ -300,7 +299,7 @@ function editHouseHold(atrr){
     $("#houseCodeEdit").val($(atrr).attr('codeHouse'));
     $("#nameEdit").val($(atrr).attr('nameHouse'));
     $("#supplier option:selected").val($(atrr).attr('idSupplier'));
-    $("#datebirth").val($(atrr).attr('dataBirth'));
+    $("#datebirth").val(new Date(+$(atrr).attr('dataBirth')).toISOString().split('T')[0]);
     $("#address").val($(atrr).attr('address'));
     $("#modalEdit").modal("show");
 }

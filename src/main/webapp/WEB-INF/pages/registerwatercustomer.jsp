@@ -215,7 +215,8 @@
             <div .center>
                 <div class="col-md-6 col-xs-12 form-group width100">
                     <div class="col-md-8 col-sm-9 col-xs-12 padd-left-15 none-padd-mobile width100">
-                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit width100 btn_send" onclick="saveResigterWater()">Gửi</button>
+                        <button type="submit" id="submitBtn" class="btn btn-success btn-edit width100 btn_send"
+                                onclick="if(ValidateName() && ValidateEmail() && ValidatePhone()) saveResigterWater();">Gửi</button>
                         <%--                            <button type="reset" class="btn btn-primary btn-edit" onclick="resetInformation()">Nhập lại</button>--%>
                     </div>
                 </div>
