@@ -101,7 +101,7 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
     @Override
     public List<WaterMoney> listwaterMoneyNoPayMentByHouse(String codeHouse) {
         try {
-            List<WaterMoney> waterMoneyList = waterMoneyRepository.getWaterMoneyByCodeHouse(codeHouse);
+            List<WaterMoney> waterMoneyList = waterMoneyRepository.getOldestUpdateWaterMoneyByCodeHouse(codeHouse);
             List<WaterMoney> result = new ArrayList<>();
             Collections.sort(waterMoneyList, new Comparator<WaterMoney>() {
                 @Override
