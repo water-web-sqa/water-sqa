@@ -24,7 +24,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -95,6 +97,7 @@ public class PaymentController {
                     bill.setIdStaff(1);
                     bill.setSumMoney(Float.valueOf(paymentWaterResponse.getSumPrice()));
                     bill.setIdWaterMoney(paymentWaterResponse.getIdWaterMoney());
+                    bill.setCreateAt(LocalDateTime.now());
                     resultMsg += paymentWaterResponse.getDateWater();
                     vnpayService.savePayMent(bill);
                 }

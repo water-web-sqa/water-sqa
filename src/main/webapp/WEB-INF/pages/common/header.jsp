@@ -261,10 +261,6 @@
             <a class="nav-link text-center textActive ${pageActive eq   waterPageCode1? "active activeUnderLine" : ""}"
                href="${pageContext.request.contextPath}<%=URLConst.Water.WATER_HOME_1%>">Đăng ký sử dụng nước
             </a>
-
-            <a class="nav-link text-center textActive ${pageActive eq   waterPageCode2? "active activeUnderLine" : ""}"
-               href="${pageContext.request.contextPath}<%=URLConst.Water.WATER_HOME_1%>">Đóng tiền điện nước
-            </a>
         </div>
 
         <div style="width: 300px;display: flex;justify-content: space-evenly;">
