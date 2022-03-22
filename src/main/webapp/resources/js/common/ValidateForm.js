@@ -9,7 +9,7 @@ function ValidateEmail() {
     if (inputText.value.match(mailformat)) {
         return true;
     } else {
-        alert("Email không hợp lệ!");
+        showMessage.show("Error", "Email không hợp lệ!", null, "OK");
         document.getElementById("mail").focus();
         return false;
     }
@@ -22,7 +22,7 @@ function ValidateName() {
     if (inputText.value.match(nameformat)) {
         return true;
     } else {
-        alert("Tên không hợp lệ!");
+        showMessage.show("Error", "Tên không hợp lệ!", null, "OK");
         document.getElementById("name").focus();
         return false;
     }
@@ -35,7 +35,7 @@ function ValidatePhone() {
     if (inputText.value.match(nameformat)) {
         return true;
     } else {
-        alert("Số điện thoại không hợp lệ!");
+        showMessage.show("Error", "Số điện thoại không hợp lệ!", null, "OK");
         document.getElementById("phone").focus();
         return false;
     }

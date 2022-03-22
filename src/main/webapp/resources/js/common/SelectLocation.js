@@ -58,12 +58,10 @@ function saveResigterWater() {
         contentType: "application/json",
         success: function (data) {
             if (data.status == 200) {
-
                 showMessage.show(msgMune.titlej001, "Đăng ký thành công");
                 location.reload();
             } else {
-
-                alert("Cannot add to list !");
+                showMessage.show("Error", "Cannot save!", null, "OK");
             }
         },
         data: JSON.stringify(customerRegister)
@@ -256,7 +254,7 @@ function saveHoldHouse(){
                 showMessage.show(msgMune.titlej001, "Sửa thành công", null, "OK");
             } else {
                 $("#modalEdit").modal("hide");
-                alert("Cannot add to list !");
+                showMessage.show("Error", "Cannot add to list!", null, "OK");
             }
         },
         data: JSON.stringify(household)
@@ -285,7 +283,7 @@ function saveNumberWater(atrr) {
                     showMessage.show(msgMune.titlej001, "Cập nhật thành công", null, "OK");
                 } else {
                     $("#modalEdit").modal("hide");
-                    alert("Cannot add to list !");
+                    showMessage.show("Error", "Cannot add to list!", null, "OK");
                 }
             },
             data: JSON.stringify(waterMoneyUpdateBeans)

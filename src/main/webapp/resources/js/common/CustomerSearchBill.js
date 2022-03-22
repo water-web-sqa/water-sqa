@@ -29,7 +29,7 @@ function customerSearchBill() {
                     $("#resultNumberWater").val((data.body.waterMoney) ? data.body.waterMoney.numberWater : 'Không có thông tin');
                     $("#resultTotal").val((data.body.bill) ? data.body.bill.sumMoney : 'Chưa đóng');
                 } else {
-                    alert("Không thể tìm kiếm thông tin người dùng!");
+                    showMessage.show("Thông báo", "Không thể tìm kiếm thông tin người dùng!", null, "OK")
                 }
             },
             error: function (e) {
@@ -38,7 +38,7 @@ function customerSearchBill() {
             data: JSON.stringify(customerSearchBeans)
         });
     } else {
-        alert("Phải nhập thời gian")
+        showMessage.show("Thông báo", "Phải nhập thời gian!", null, "OK")
     }
 }
 

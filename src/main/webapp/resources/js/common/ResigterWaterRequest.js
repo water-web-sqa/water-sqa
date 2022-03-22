@@ -175,7 +175,7 @@ function saveResigterWater() {
                 location.reload();
             } else {
                 $("#modalEdit").modal("hide");
-                alert("Cannot add to list !");
+                showMessage.show("Error", "Cannot update!", null, "OK")
             }
         },
         data: JSON.stringify(customerRegister)
