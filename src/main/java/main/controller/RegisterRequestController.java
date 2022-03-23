@@ -62,7 +62,8 @@ public class RegisterRequestController {
                 case 2: {
                     CustomerRegister customerRegister = customerRegisterService.findById(id);
                     String lastId = houseHoldService.lastId();
-                    HouseHold newHouseHold = new HouseHold("MDB" + Integer.parseInt(lastId.substring(3, lastId.length())),
+                    Integer stt = Integer.parseInt(lastId.substring(3, lastId.length())) + 1;
+                    HouseHold newHouseHold = new HouseHold("MDB" + ((stt < 10) ? ("0" + stt) : (stt + "")),
                             customerRegister.getNameHouse(), customerRegister.getAddress(), customerRegister.getDataBirth(),
                             customerRegister.getIdSupplier(), customerRegister.getTypeHouse());
                     houseHoldService.saveHouseHold(newHouseHold);

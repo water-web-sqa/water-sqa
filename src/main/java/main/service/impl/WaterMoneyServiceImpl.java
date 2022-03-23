@@ -143,6 +143,7 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
     @Override
     public void updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
         try {
+            Date dateWater = waterMoneyUpdateBeans.getDateWater();
             WaterMoney waterMoney = new WaterMoney();
             waterMoney.setCodeHouse(waterMoneyUpdateBeans.getCodeHouse());
             waterMoney.setNumberWater(waterMoneyUpdateBeans.getNumberWater());

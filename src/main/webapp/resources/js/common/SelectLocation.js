@@ -267,7 +267,7 @@ function saveNumberWater(atrr) {
     let waterMoneyUpdateBeans = {
         codeHouse: $(atrr).attr('codeHouse'),
         numberWater: $('#dataWater_' + $(atrr).attr('codeHouse'))[0].value,
-        dateWater: new Date($("#chooseTime").val())
+        dateWater: ($("#chooseTime").val()) ? new Date($("#chooseTime").val()) : new Date()
     };
 
     if(!isNaN(waterMoneyUpdateBeans.numberWater) && waterMoneyUpdateBeans.numberWater > 0) {
