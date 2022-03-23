@@ -10,6 +10,7 @@ $( document ).ready(function() {
     initData();
     searchhousehold(true);
     getWaterSupplier1();
+    $("#myDialog").hide();
 });
 
 

@@ -45,7 +45,7 @@ public class HomeController extends BaseController{
         return new ModelAndView("home");
     }
 
-    @RequestMapping(value = URLConst.User.USER_REGISTER_USE_WATER, method = RequestMethod.GET)
+    @RequestMapping(value = URLConst.User.WATER_HOME_USER_1, method = RequestMethod.GET)
     public ModelAndView register(Model model, HttpServletRequest request, Principal principal) {
         HttpSession session = request.getSession();
         session.setAttribute("pageActive", CommonConst.COMMON_USER_PAGE.WATER1);
