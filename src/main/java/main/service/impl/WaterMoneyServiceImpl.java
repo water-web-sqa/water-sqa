@@ -4,6 +4,7 @@ import main.beans.PaymentWaterResponse;
 import main.beans.WaterMoneyUpdateBeans;
 import main.common.CommonConst;
 import main.entity.Bill;
+import main.entity.User;
 import main.entity.WaterMoney;
 import main.repository.BillRespository;
 import main.repository.HouseHoldRepository;
@@ -39,12 +40,16 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
 
     @Override
     public WaterMoney findWaterMoneyByHouseHold(String codeHouse, Date date) {
-        SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String str = sdf.format(date);
-        System.out.println(str);
-        WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse, Integer.parseInt(str.substring(3,5)),
-                Integer.parseInt(str.substring(6, str.length())));
-        return result;
+        try {
+            SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String str = sdf.format(date);
+            WaterMoney result = waterMoneyRepository.findDateWaterLast(codeHouse, Integer.parseInt(str.substring(3,5)),
+                    Integer.parseInt(str.substring(6, str.length())));
+            return result;
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
+        }
     }
 
 
@@ -127,19 +132,7 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
             throw new RuntimeException(ex);
         }
     }
-//    @Override
-//    public void updateWaterMoney(Integer numberWater, String codeHouse) {
-//        try {
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//            WaterMoney waterMoney = waterMoneyRepository.findDateWaterLast(codeHouse);
-//            if(waterMoney != null && formatter.format(waterMoney.getDateWater()).compareTo(formatter.format(new Date())) == 0) {
-//                waterMoneyRepository.deleteDateWaterNow(codeHouse);
-//            }
-//            waterMoneyRepository.saveWaterMoney(numberWater, codeHouse);
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
+
     @Override
     public void updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
         try {
@@ -150,8 +143,9 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
             waterMoney.setDateWater(waterMoneyUpdateBeans.getDateWater());
             waterMoney.setCreatedAt(LocalDateTime.now());
             waterMoneyRepository.save(waterMoney);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
     }
 

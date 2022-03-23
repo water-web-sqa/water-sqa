@@ -4,6 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import main.entity.WaterSupplier;
 import main.repository.WatterRepository;
 import main.service.WatterService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.List;
 @EnableTransactionManagement(proxyTargetClass = true)
 @Log4j2
 public class WatterServiceImpl implements WatterService {
+    private static final Logger logger = LogManager.getLogger(WatterServiceImpl.class);
 
     @Autowired
     WatterRepository watterRepository;
@@ -28,9 +31,9 @@ public class WatterServiceImpl implements WatterService {
             return watterRepository.findAll();
         }
         catch (Exception ex){
-            log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
-        return null;
     }
 
     @Override
@@ -39,8 +42,8 @@ public class WatterServiceImpl implements WatterService {
             return watterRepository.findById(id);
         }
         catch (Exception ex){
-            log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
-        return null;
     }
 }

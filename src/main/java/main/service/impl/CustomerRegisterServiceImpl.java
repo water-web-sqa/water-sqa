@@ -3,6 +3,8 @@ package main.service.impl;
 import main.entity.CustomerRegister;
 import main.repository.CustomerRegisterRepository;
 import main.service.CustomerRegisterService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -17,20 +19,28 @@ import java.util.List;
 @Transactional(rollbackOn = Exception.class)
 @EnableTransactionManagement(proxyTargetClass = true)
 public class CustomerRegisterServiceImpl implements CustomerRegisterService {
+    private static final Logger logger = LogManager.getLogger(CustomerRegisterServiceImpl.class);
+
     @Autowired
     CustomerRegisterRepository customerRegisterRepository;
 
     @Override
     public List<CustomerRegister> allCustomerRegister() {
-        return customerRegisterRepository.findAllByStatusNotLike(2);
+        try {
+            return customerRegisterRepository.findAllByStatusNotLike(2);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void deleteCustomerRegister(Integer id) {
         try {
             customerRegisterRepository.deleteById(id);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
     }
 
@@ -38,8 +48,9 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService {
     public void updateStatus(Integer status, Integer id) {
         try {
             customerRegisterRepository.updateStatus(status, id);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
     }
 
@@ -52,8 +63,9 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService {
     public void save(CustomerRegister customerRegister) {
         try {
             customerRegisterRepository.save(customerRegister);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new RuntimeException(ex);
         }
     }
 }
