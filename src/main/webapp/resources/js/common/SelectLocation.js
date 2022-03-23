@@ -38,34 +38,40 @@ function getWaterSupplier1(){
 }
 
 function saveResigterWater() {
-    let customerRegister = {
-        id: $("#idRes").val(),
-        nameHouse: $("#name").val(),
-        address: $("#address").val() + ", " + $("#ward option:selected")[0].innerText + ", " +
-            $("#district option:selected")[0].innerText + ", " + $("#city option:selected")[0].innerText,
-        dataBirth: $("#dob").val(),
-        email: $("#mail").val(),
-        phone: $("#phone").val(),
-        idSupplier: $("#supplier option:selected").val(),
-        typeHouse: $("#typehousehold option:selected").val(),
-        status: 0
-    }
+    if (+$("#dob").val().split('-')[0] > new Date().getFullYear()) {
+        showMessage.show("Thông báo", "Ngày sinh không hợp lệ", null, "OK");
+    } else if($("#supplier option:selected").val() == '' || $("#typehousehold option:selected").val() == '') {
+        showMessage.show("Thông báo", "Nhà cung cấp hoặc loại gia đình không hợp lệ", null, "OK");
+    } else {
+        let customerRegister = {
+            id: $("#idRes").val(),
+            nameHouse: $("#name").val(),
+            address: $("#address").val() + ", " + $("#ward option:selected")[0].innerText + ", " +
+                $("#district option:selected")[0].innerText + ", " + $("#city option:selected")[0].innerText,
+            dataBirth: $("#dob").val(),
+            email: $("#mail").val(),
+            phone: $("#phone").val(),
+            idSupplier: $("#supplier option:selected").val(),
+            typeHouse: $("#typehousehold option:selected").val(),
+            status: 0
+        }
 
-    $.ajax({
-        type: "POST",
-        url: urlAddCustomerRegister,
-        dataType: "json",
-        contentType: "application/json",
-        success: function (data) {
-            if (data.status == 200) {
-                showMessage.show(msgMune.titlej001, "Đăng ký thành công");
-                location.reload();
-            } else {
-                showMessage.show("Error", "Cannot save!", null, "OK");
-            }
-        },
-        data: JSON.stringify(customerRegister)
-    });
+        $.ajax({
+            type: "POST",
+            url: urlAddCustomerRegister,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data.status == 200) {
+                    showMessage.show(msgMune.titlej001, "Đăng ký thành công");
+                    location.reload();
+                } else {
+                    showMessage.show("Error", "Cannot save!", null, "OK");
+                }
+            },
+            data: JSON.stringify(customerRegister)
+        });
+    }
 }
 
 function initData() {

@@ -40,4 +40,3 @@ function ValidatePhone() {
         return false;
     }
 }
-

@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="<c:url value = "/resources/js/jquery-3.6.0.min.js" />"></script>
     <script src="<c:url value = "/resources/js/jquery-ui.min.js" />"></script>
