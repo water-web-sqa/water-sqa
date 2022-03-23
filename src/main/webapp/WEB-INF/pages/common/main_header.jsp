@@ -59,7 +59,7 @@
 
                     <ul class="navbar-nav ml-auto" style="width: 100%">
                         <li class="nav-item active ${pageActive eq   waterPageCode ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER%>" class="nav-link">Trang chủ</a></li>
-                        <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.USER_REGISTER_USE_WATER%>" class="nav-link">Đăng ký sử dụng nước</a></li>
+                        <li class="nav-item active ${pageActive eq   waterPageCode1 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER_1%>" class="nav-link">Đăng ký sử dụng nước</a></li>
                         <li class="nav-item ${pageActive eq   waterPageCode2 ? "cta" : ""}"><a href="${pageContext.request.contextPath}<%=URLConst.User.WATER_HOME_USER_2%>" class="nav-link">Thanh toán</a></li>
                     </ul>
                 </div>
