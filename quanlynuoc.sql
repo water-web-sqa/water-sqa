@@ -23,14 +23,15 @@ DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bill` (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `id_staff` int DEFAULT NULL,
   `id_water_money` int DEFAULT NULL,
   `sum_money` float DEFAULT NULL,
+  `create_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_hd_nv_idx` (`id_staff`),
   KEY `fk_hd_tn_idx` (`id_water_money`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,6 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (1,1,1,20);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,12 +57,13 @@ CREATE TABLE `customer_register` (
   `data_birth` date NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(10) NOT NULL,
+  `type_house` varchar(2) DEFAULT NULL,
   `status` int DEFAULT '0',
   `id_supplier` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idsupplier_idx` (`id_supplier`),
-  CONSTRAINT `idsupplier` FOREIGN KEY (`id_supplier`) REFERENCES `water_supplier` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `idsupplier` FOREIGN KEY (`id_supplier`) REFERENCES `water_supplier` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,11 +83,12 @@ DROP TABLE IF EXISTS `household`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `household` (
-  `code_house` varchar(255) NOT NULL,
+  `code_house` varchar(155) NOT NULL,
   `name_house` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `data_birth` date DEFAULT NULL,
   `id_supplier` int DEFAULT NULL,
+  `type_house` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`code_house`),
   KEY `fk_hgd_ncc_idx` (`id_supplier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -98,7 +100,7 @@ CREATE TABLE `household` (
 
 LOCK TABLES `household` WRITE;
 /*!40000 ALTER TABLE `household` DISABLE KEYS */;
-INSERT INTO `household` VALUES ('MDB01','Nguyễn Viết Cường','Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội','1999-12-14',2),('MDB02','Đặng Tiến Đạt','SN53, Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội','2000-12-27',1);
+INSERT INTO `household` VALUES ('MDB01','Nguyễn Viết Cường','Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội','1999-12-14',2,'0'),('MDB02','Đặng Tiến Đạt','SN53, Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội',NULL,1,NULL),('MDB2','Lai Van Ha','111, Phường Trúc Bạch, Quận Ba Đình, Thành phố Hà Nội','2022-03-27',3,'1');
 /*!40000 ALTER TABLE `household` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,11 +169,12 @@ CREATE TABLE `water_money` (
   `id` int NOT NULL AUTO_INCREMENT,
   `date_water` date DEFAULT NULL,
   `number_water` int DEFAULT NULL,
-  `code_house` varchar(255) DEFAULT NULL,
+  `code_house` varchar(155) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fkhgd_idx` (`code_house`),
   CONSTRAINT `fk_tn_hgd` FOREIGN KEY (`code_house`) REFERENCES `household` (`code_house`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +183,7 @@ CREATE TABLE `water_money` (
 
 LOCK TABLES `water_money` WRITE;
 /*!40000 ALTER TABLE `water_money` DISABLE KEYS */;
-INSERT INTO `water_money` VALUES (1,'2022-03-12',15,'MDB01'),(2,'2022-03-13',16,'MDB01'),(15,'2022-03-16',15,'MDB01');
+INSERT INTO `water_money` VALUES (18,'2022-03-01',15,'MDB01','2022-03-19 01:18:27'),(19,'2022-03-01',20,'MDB01','2022-03-19 01:18:35'),(24,'2022-02-01',32,'MDB01','2022-03-21 16:51:02'),(84,'2022-03-01',31,'MDB02','2022-03-23 10:55:09');
 /*!40000 ALTER TABLE `water_money` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,14 +195,14 @@ DROP TABLE IF EXISTS `water_supplier`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `water_supplier` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name_supplier` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `sdt` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `fax` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-18 21:37:38
+-- Dump completed on 2022-03-24 15:15:35
