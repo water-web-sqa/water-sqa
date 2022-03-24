@@ -164,7 +164,7 @@ function searchhousehold(all) {
             ward: ($("#ward option:selected")[0].innerText == $("#wardDefault")[0].innerText) ? "" : $("#ward option:selected")[0].innerText,
             namehouse: $("#searchname").val(),
             codehouse: $("#searchcode").val(),
-            timesearch: ($("#chooseTime").val()) ? (new Date($("#chooseTime").val())) : new Date()
+            timesearch: ($("#chooseTime").val()) ? (new Date($("#chooseTime").val())) : (new Date(new Date().getFullYear(), new Date().getMonth()))
         };
     }
 
@@ -274,7 +274,7 @@ function saveNumberWater(atrr) {
     let waterMoneyUpdateBeans = {
         codeHouse: $(atrr).attr('codeHouse'),
         numberWater: $('#dataWater_' + $(atrr).attr('codeHouse'))[0].value,
-        dateWater: ($("#chooseTime").val()) ? new Date($("#chooseTime").val()) : new Date()
+        dateWater: ($("#chooseTime").val()) ? new Date($("#chooseTime").val()) : (new Date(new Date().getFullYear(), new Date().getMonth()))
     };
 
     if(!isNaN(waterMoneyUpdateBeans.numberWater) && waterMoneyUpdateBeans.numberWater > 0) {
