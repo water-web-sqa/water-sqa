@@ -1,9 +1,10 @@
 package main.service;
 
 import main.beans.HouseHoldBeans;
+import main.beans.WrapperResponse;
 import main.entity.HouseHold;
-import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface HouseHoldService {
@@ -11,4 +12,7 @@ public interface HouseHoldService {
     void saveHouseHold(HouseHold houseHold);
     HouseHold findByCodeHouse(String codeHouse);
     String lastId();
+
+    HashMap<String, Object> findHouseHoldWater(HouseHoldBeans houseHoldBeans);
+    WrapperResponse<Boolean> updateHouseHold(HouseHold houseHold);
 }

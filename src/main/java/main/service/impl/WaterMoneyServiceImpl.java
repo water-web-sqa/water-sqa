@@ -2,6 +2,7 @@ package main.service.impl;
 
 import main.beans.PaymentWaterResponse;
 import main.beans.WaterMoneyUpdateBeans;
+import main.beans.WrapperResponse;
 import main.common.CommonConst;
 import main.entity.Bill;
 import main.entity.User;
@@ -134,19 +135,23 @@ public class WaterMoneyServiceImpl implements WaterMoneyService {
     }
 
     @Override
-    public void updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
+    public WrapperResponse<Boolean> updateWaterMoney(WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
+        WrapperResponse<Boolean> response = new WrapperResponse<>();
         try {
-            Date dateWater = waterMoneyUpdateBeans.getDateWater();
             WaterMoney waterMoney = new WaterMoney();
             waterMoney.setCodeHouse(waterMoneyUpdateBeans.getCodeHouse());
             waterMoney.setNumberWater(waterMoneyUpdateBeans.getNumberWater());
             waterMoney.setDateWater(waterMoneyUpdateBeans.getDateWater());
             waterMoney.setCreatedAt(LocalDateTime.now());
             waterMoneyRepository.save(waterMoney);
-        } catch (Exception ex) {
-            logger.error(ex.getMessage(), ex);
-            throw new RuntimeException(ex);
+            response.setStatus(200);
+            response.setBody(true);
+            response.setMsg("Success");
+        } catch (Exception e) {
+            response.setStatus(400);
+            logger.error(e.getMessage(), e);
         }
+        return response;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package main.service.impl;
 
+import main.beans.HouseHoldeWatterSuplier;
+import main.beans.PaymentWaterResponse;
+import main.beans.WrapperResponse;
 import main.common.StringConst;
 import main.common.URLConst;
 import main.config.vnpay.ConfigVnpay;
@@ -8,20 +11,29 @@ import main.entity.HouseHold;
 import main.entity.User;
 import main.repository.BillRespository;
 import main.repository.HouseHoldRepository;
+import main.repository.WatterRepository;
 import main.repository.entityManager.UserEntityManager;
 import main.service.VnpayService;
+import main.service.WaterMoneyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -33,6 +45,12 @@ public class VnpayServiceImpl implements VnpayService {
 
     @Autowired
     BillRespository billRespository;
+
+    @Autowired
+    WaterMoneyService waterMoneyService;
+
+    @Autowired
+    WatterRepository watterRepository;
 
     @Autowired
     UserEntityManager userEntityManager;
@@ -118,5 +136,93 @@ public class VnpayServiceImpl implements VnpayService {
             logger.error(ex.getMessage(), ex);
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public ResponseEntity<?> vnpayment(String codeHouse, String vnpOrderInfo, String bankcode
+            , HttpServletRequest httpServletRequest, ServletContext context) {
+        try {
+            String baseUrl = ServletUriComponentsBuilder.fromRequestUri(httpServletRequest)
+                    .replacePath(null)
+                    .build()
+                    .toUriString();
+            String return_url = baseUrl + context.getContextPath() + URLConst.User.VPN_RESPONSE_PAY_MENT_SERVER;
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    this.paymentWater(codeHouse,vnpOrderInfo, bankcode, waterMoneyService.getMountOfcodeHouse(codeHouse), return_url));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).body("FAILED");
+        }
+    }
+
+    @Override
+    public ModelAndView responseVnPay(String codeHouse, String responseCode, HttpServletRequest request) {
+        try {
+            //String signValue = ConfigVnpay.hashAllFields(fields);
+            HouseHold houseHold = houseHoldRepository.findByCodeHouse(codeHouse);
+            if(responseCode.equals("00")){
+                List<PaymentWaterResponse> list = waterMoneyService.listwaterMoneyResponseByHouse(codeHouse);
+                String resultMsg = "";
+                for(PaymentWaterResponse paymentWaterResponse: list){
+                    Bill bill = new Bill();
+                    bill.setIdStaff(1);
+                    bill.setSumMoney(Float.valueOf(paymentWaterResponse.getSumPrice()));
+                    bill.setIdWaterMoney(paymentWaterResponse.getIdWaterMoney());
+                    bill.setCreateAt(LocalDateTime.now());
+                    resultMsg += paymentWaterResponse.getDateWater();
+                    savePayMent(bill);
+                }
+                HttpSession session = request.getSession();
+                session.setAttribute("codeHouse", codeHouse);
+                session.setAttribute("nameHouse", houseHold.getNameHouse());
+                session.setAttribute("address", houseHold.getAddress());
+                session.setAttribute("resultMsg", resultMsg);
+                return new ModelAndView("common/succsessPayment");
+            }
+            else{
+                HttpSession session = request.getSession();
+                session.setAttribute("resultMsg", "Lỗi giao dịch");
+                return new ModelAndView("common/errorPayment");
+            }
+        } catch (Exception e) {
+            return new ModelAndView("home");
+        }
+    }
+
+    @Override
+    public WrapperResponse<HouseHoldeWatterSuplier> getHouseHold(String codeHouse) {
+        WrapperResponse<HouseHoldeWatterSuplier> response = new WrapperResponse<>();
+        try {
+            HouseHold houseHold = houseHoldRepository.findByCodeHouse(codeHouse);
+            HouseHoldeWatterSuplier houseHoldeWatterSuplier = new HouseHoldeWatterSuplier(houseHold,
+                    watterRepository.findById(Integer.valueOf(houseHold.getIdSupplier())));
+            response.setStatus(200);
+            response.setBody(houseHoldeWatterSuplier);
+            response.setMsg("Success");
+        } catch (Exception e) {
+            response.setStatus(400);
+            logger.error(e.getMessage(), e);
+        }
+        return response;
+    }
+
+    @Override
+    public HashMap<String, Object> getListMemberMayPayment(String codeHouse) {
+        HashMap<String, Object> result = new HashMap<>();
+        List<PaymentWaterResponse> list = waterMoneyService.listwaterMoneyResponseByHouse(codeHouse);
+        if(list.size() > 0){
+            PaymentWaterResponse paymentWaterResponse = new PaymentWaterResponse();
+            paymentWaterResponse.setPriceBybac("Tong");
+            paymentWaterResponse.setSumPrice(Integer.parseInt(waterMoneyService.getMountOfcodeHouse(codeHouse)));
+            list.add(paymentWaterResponse);
+        }
+        try {
+            result.put("draw", 1);
+            result.put("recordsTotal", list.size());
+            result.put("recordsFiltered", list.size());
+            result.put("data", list);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return result;
     }
 }

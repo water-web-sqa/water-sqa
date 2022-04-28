@@ -22,13 +22,12 @@ public class HomeController extends BaseController{
     public HomeController() {
 
     }
-
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/" , method = RequestMethod.GET)
     public ModelAndView homeView(HttpServletRequest request) {
-
         return new ModelAndView("redirect:/water");
     }
+
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(Model model, HttpServletRequest request, Principal principal) {

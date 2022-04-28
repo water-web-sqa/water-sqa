@@ -1,6 +1,8 @@
 package main.service.impl;
 
 import lombok.extern.log4j.Log4j2;
+import main.beans.WrapperResponse;
+import main.entity.HouseHold;
 import main.entity.WaterSupplier;
 import main.repository.WatterRepository;
 import main.service.WatterService;

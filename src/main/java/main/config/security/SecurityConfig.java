@@ -69,9 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// Submit URL của trang login
 				.loginProcessingUrl("/login-process") // Submit URL
 				.loginPage("/login")
-				.failureUrl("/login?error=true")
 				.usernameParameter("username")
 				.passwordParameter("password")
+				.defaultSuccessUrl("/")
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -21,18 +21,7 @@ public class CustomerRegisterController {
 
     @PostMapping(value = URLConst.User.ADD_CUSTOMER_REGISTER, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public WrapperResponse<Boolean> updateHouseHold(@RequestBody CustomerRegister customerRegister) {
-        WrapperResponse<Boolean> response = new WrapperResponse<Boolean>();
-        try {
-            response.setStatus(200);
-            response.setBody(true);
-            customerRegisterService.save(customerRegister);
-            return response;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        response.setStatus(200);
-        response.setBody(true);
-        return null;
+    public WrapperResponse<Boolean> addCustomerResigter(@RequestBody CustomerRegister customerRegister) {
+        return customerRegisterService.addCustomerResigter(customerRegister);
     }
 }

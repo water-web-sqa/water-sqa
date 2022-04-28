@@ -61,74 +61,24 @@ public class WaterController extends BaseController{
 	@PostMapping(value = URLConst.Water.WATER_SEARCH_HOUSEHOLD, consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public HashMap<String, Object> findHouseHoldWater(@RequestBody HouseHoldBeans houseHoldBeans) {
-		HashMap<String, Object> result = new HashMap<>();
-		try {
-			List<HouseHold> houseHolds = new ArrayList<>();
-			if(houseHoldBeans.getCodehouse().equals("")) {
-				houseHolds = houseHoldService.findAllHousehouseByAddress(houseHoldBeans);
-			} else {
-				HouseHold item = houseHoldService.findByCodeHouse(houseHoldBeans.getCodehouse());
-				if(item != null) {
-					houseHolds.add(item);
-				}
-			}
-			List<HouseHoldWaterBeans> list = new ArrayList<>();
-			houseHolds.forEach(houseHold -> {
-				list.add(new HouseHoldWaterBeans(houseHold, waterMoneyService.findWaterMoneyByHouseHold(houseHold.getCodeHouse(),
-						houseHoldBeans.getTimesearch())));
-			});
-
-			result.put("draw", 1);
-			result.put("recordsTotal", list.size());
-			result.put("recordsFiltered", list.size());
-			result.put("data", list);
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
-		return result;
+		return houseHoldService.findHouseHoldWater(houseHoldBeans);
 	}
 
 	@GetMapping(value = URLConst.Water.GET_WATER_SUPPLIER)
 	@ResponseBody
 	public List<WaterSupplier> getListWater() {
-		try {
-			return watterService.getListSupplier();
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
-		return null;
+		return watterService.getListSupplier();
 	}
 
 	@PostMapping(value = URLConst.Water.UPDATE_HOUSE_HOLD, consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public WrapperResponse<Boolean> updateHouseHold(@RequestBody HouseHold houseHold) {
-		WrapperResponse<Boolean> response = new WrapperResponse<Boolean>();
-		try {
-			response.setStatus(200);
-			response.setBody(true);
-			houseHoldService.saveHouseHold(houseHold);
-			return response;
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
-		response.setStatus(200);
-		response.setBody(true);
-		return null;
+		return houseHoldService.updateHouseHold(houseHold);
 	}
 
 	@PostMapping(value = URLConst.Water.UPDATE_WATER_MONEY, consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public WrapperResponse<Boolean> updateWaterMoney(@RequestBody WaterMoneyUpdateBeans waterMoneyUpdateBeans) {
-		WrapperResponse<Boolean> response = new WrapperResponse<>();
-		try {
-			waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans);
-			response.setStatus(200);
-			response.setBody(true);
-			response.setMsg("Success");
-		} catch (Exception e) {
-			response.setStatus(400);
-			logger.error(e.getMessage(), e);
-		}
-		return response;
+		return waterMoneyService.updateWaterMoney(waterMoneyUpdateBeans);
 	}
 }
