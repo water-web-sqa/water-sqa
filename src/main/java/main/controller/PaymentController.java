@@ -38,7 +38,6 @@ public class PaymentController {
 
     @Autowired
     private ServletContext context;
-    private WatterService watterService;
 
     @GetMapping(value = URLConst.User.USER_PAY_MENT)
     @ResponseBody
