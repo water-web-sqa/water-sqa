@@ -58,9 +58,7 @@ public class PaymentWaterTest {
     @Autowired
     private VnpayService vnpayService;
 
-    @Autowired
-    private HouseHoldRepository houseHoldRepository;
-
+    private HouseHold houseHold;
 
 
     // kiểm tra tìm kiếm HouseHold (nhà sử dụng nước) theo mã danh bộ
@@ -68,7 +66,7 @@ public class PaymentWaterTest {
     public void testHouseHoldByCodeWater() {
         // MDB01 - Nguyễn Viết Cường
         try {
-            HouseHold houseHold = houseHoldService.findByCodeHouse("MDB01");
+            houseHold = houseHoldService.findByCodeHouse("MDB01");
             assertNotNull(houseHold);
         }
         catch (Exception ex){
@@ -80,7 +78,6 @@ public class PaymentWaterTest {
     @Test
     public void testWatterSuplier() {
         try {
-            HouseHold houseHold = houseHoldService.findByCodeHouse("MDB01");
             WaterSupplier waterSupplier =  watterRepository.findById(Integer.valueOf(houseHold.getIdSupplier()));
             assertNotNull(waterSupplier);
         }
@@ -93,7 +90,6 @@ public class PaymentWaterTest {
     @Test
     public void getHouseHold() {
         try {
-            HouseHold houseHold = houseHoldService.findByCodeHouse("MDB01");
             WaterSupplier waterSupplier = watterRepository.findById(Integer.valueOf(houseHold.getIdSupplier()));
             HouseHoldeWatterSuplier houseHoldeWatterSuplier = new HouseHoldeWatterSuplier(houseHold,
                     waterSupplier);
@@ -127,7 +123,7 @@ public class PaymentWaterTest {
                     }
                 }
                 if(!checkBill) result.add(waterMoney);
-                assertNotNull(waterMoney);
+                assertNotNull(result);
             }
         }
         catch (Exception ex){
