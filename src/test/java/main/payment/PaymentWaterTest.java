@@ -9,33 +9,27 @@ import main.entity.HouseHold;
 import main.entity.WaterMoney;
 import main.entity.WaterSupplier;
 import main.repository.BillRespository;
-import main.repository.HouseHoldRepository;
 import main.repository.WaterMoneyRepository;
 import main.repository.WatterRepository;
 import main.service.HouseHoldService;
 import main.service.VnpayService;
 import main.service.WaterMoneyService;
-import main.service.WatterService;
-import org.aspectj.lang.annotation.Before;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

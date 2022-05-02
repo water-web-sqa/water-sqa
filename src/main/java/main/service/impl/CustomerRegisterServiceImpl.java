@@ -109,12 +109,12 @@ public class CustomerRegisterServiceImpl implements CustomerRegisterService {
         WrapperResponse<Boolean> result = new WrapperResponse<>();
         try {
             switch (type) {
-                case 1: {
-                    deleteCustomerRegister(id);
-                    break;
-                }
                 case 0: {
                     updateStatus(1, id);
+                    break;
+                }
+                case 1: {
+                    deleteCustomerRegister(id);
                     break;
                 }
                 case 2: {

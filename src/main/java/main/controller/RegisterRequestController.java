@@ -38,7 +38,7 @@ public class RegisterRequestController {
     @GetMapping(value = URLConst.Water.SET_STATUS_REQUEST)
     @ResponseBody
     public WrapperResponse<Boolean> setStatusRequest(@RequestParam Integer type, @RequestParam Integer id) {
-        return setStatusRequest(type, id);
+        return customerRegisterService.setStatusRequest(type, id);
     }
 
     @PostMapping(value = URLConst.Water.UPDATE_CUSTOMER_RESIGTER, consumes = "application/json", produces = "application/json")

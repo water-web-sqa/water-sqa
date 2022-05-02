@@ -17,7 +17,7 @@ public class URLConst {
 
         public static final String WATER_HOME_1 = "/water1";
 
-        public static final String WATER_HOME_2 = "/water2";
+//        public static final String WATER_HOME_2 = "/water2";
 
         public static final String WATER_SEARCH_HOUSEHOLD = WATER_HOME + "/search";
 
@@ -27,7 +27,7 @@ public class URLConst {
 
         public static final String UPDATE_WATER_MONEY = WATER_HOME + "/updateWaterMoney";
 
-        public static final String GET_REQUEST_RESIGTER_WATER = WATER_HOME_2 + "/registerWater";
+        public static final String GET_REQUEST_RESIGTER_WATER = WATER_HOME_1 + "/registerWater";
 
         public static final String SET_STATUS_REQUEST = GET_REQUEST_RESIGTER_WATER + "/updateStatus";
 
