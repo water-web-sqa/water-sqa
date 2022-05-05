@@ -28,8 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -56,12 +55,15 @@ public class PaymentWaterTest {
 
 
     // kiểm tra tìm kiếm HouseHold (nhà sử dụng nước) theo mã danh bộ
+    // Input: TestHouseHoldByCodeWater(codeHould: "MDB01")
+    // Expect output: HouseHoldRequest(name_house = "Nguyễn Viết Cường")
     @BeforeAll()
     public void testHouseHoldByCodeWater() {
         // MDB01 - Nguyễn Viết Cường
         try {
             houseHold = houseHoldService.findByCodeHouse("MDB01");
             assertNotNull(houseHold);
+            assertEquals(houseHold.getNameHouse(), "Nguyễn Viết Cường");
         }
         catch (Exception ex){
             fail("throw exception");
@@ -69,20 +71,26 @@ public class PaymentWaterTest {
     }
 
     // lây nhà cung cấp nước ( theo hộ gia đình )
+    // Input: TestWatterSuplier(codeHould: "MDB01")
+    // Expect output: WaterRequest(name_supplier = "Cấp nước Viwaco - Hà Nội")
     @Test
     public void testWatterSuplier() {
         try {
             WaterSupplier waterSupplier =  watterRepository.findById(Integer.valueOf(houseHold.getIdSupplier()));
             assertNotNull(waterSupplier);
+            assertEquals(waterSupplier.getNameSupplier(), "Cấp nước Viwaco - Hà Nội");
         }
         catch (Exception ex){
             fail("throw exception");
         }
     }
 
-    // expect HouseHoldeWatterSuplier
+    // expect getHouseHoldWatterSupplier
+    // lây nhà cung cấp nước ( theo hộ gia đình )
+    // Input: getHouseHoldWatterSupplier(codeHould: "MDB01")
+    // Expect output: HouseHoldeWatterSuplierRequest(name_supplier = "Cấp nước Viwaco - Hà Nội", name_houseHold = "Nguyễn Viết Cường")
     @Test
-    public void getHouseHold() {
+    public void getHouseHoldWatterSupplier() {
         try {
             WaterSupplier waterSupplier = watterRepository.findById(Integer.valueOf(houseHold.getIdSupplier()));
             HouseHoldeWatterSuplier houseHoldeWatterSuplier = new HouseHoldeWatterSuplier(houseHold,
@@ -96,6 +104,8 @@ public class PaymentWaterTest {
 
 
     // kiểm thử lấy danh sách tiền nước chưa thanh toán listwaterMoneyNoPayMentByHouse
+    // Input: listwaterMoneyNoPayMentByHouse(codeHould: "MDB01")
+    // Expect output: listwaterMoneyNoPayMentByHouse("Not Null WatterMoney")
     @Test
     public void listwaterMoneyNoPayMentByHouse(){
         try {
@@ -126,6 +136,8 @@ public class PaymentWaterTest {
     }
 
     // test lay tien theo thang can thanh toan cua ho gia dinh
+    // Input: getListMemberMayPayment(codeHould: "MDB01")
+    // Expect output: PaymentWaterResponse("Not Null WatterMoney")
     @Test
     public void getListMemberMayPayment(){
         try {
@@ -139,6 +151,9 @@ public class PaymentWaterTest {
     }
 
 
+    // test thanh toan tien nuoc cua ho gia dinh ho gia dinh
+    // Input: paymentWater(codeHould: "MDB01", bankcod="NCB", vnpOrderInfo="ThanhToan")
+    // Expect output: PaymentWaterResponse("paymentUrl: Not Null or Contain: 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'")
     @Test
     public void paymentWater(){
         try {
@@ -214,7 +229,9 @@ public class PaymentWaterTest {
         }
     }
 
-    // test responseVnPay sucess
+    // test kết quả response của VnPay sucess
+    // Input: responseVnPaySucess(codeHould: "MDB01", responseCode="00")
+    // Expect output: responseVnPaySucess("resultMsg: Not Null") -> Tức là thanh toan thanh cong
     @After
     public void responseVnPaySucess(){
         try {
